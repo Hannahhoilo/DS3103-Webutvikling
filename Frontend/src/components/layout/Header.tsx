@@ -1,0 +1,69 @@
+import { Link, useLocation } from "react-router-dom";
+
+// https://reactrouter.com/api/hooks/useLocation
+//mulig vi dropper dette siden det er utenfor pensum 
+
+const Header = () => {
+
+	const location = useLocation();
+
+  return (
+    <header className="w-full bg-gradient-to-r from-[#063A7F] to-[#11B7FF] py-8 px-4 flex items-center justify-between">
+      {/* LOGO */}
+      <Link to="/" className="text-2xl font-bold tracking-wide text-[#BBFF00]">
+        SportsWorld 🎾
+      </Link>
+
+      {/* NAV MENU */}
+      <ul className="flex items-center gap-6 font-bold text-[#BBFF00]">
+        <li className="text-lg  hover:text-[#DAFFA2]">
+          {location.pathname === "/Athletes" && "🎾"}
+          <Link to="/Athletes">Athletes</Link>
+        </li>
+
+        <li className="text-lg hover:text-[#DAFFA2]">
+          {location.pathname === "/Register" && "🎾"}
+          <Link to="/Register">Register</Link>
+        </li>
+
+        <li>
+          <Link
+            to="/Finances"
+            className="text-lg font-bold text-[#BBFF00] hover:text-[#DAFFA2]"
+          >
+            Finances
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/Venue"
+            className="text-lg font-bold text-[#BBFF00] hover:text-[#DAFFA2]"
+          >
+            Venues
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/ManageVenues"
+            className="text-lg font-bold text-[#BBFF00] hover:text-[#DAFFA2]"
+          >
+            Manage Venues
+          </Link>
+        </li>
+      </ul>
+    </header>
+  );
+}; 
+
+export default Header;
+
+{
+  /*
+  
+  text-lg font-bold text-[#BBFF00] hover:text-[#DAFFA2]
+
+
+      <header className="w-full bg-gradient-to-r from-[#063A7F] to-[#11B7FF] py-8 text-center">
+        <h1 className="text-4xl font-extrabold text-[#BBFF00]">Venues 🎾</h1>
+      </header>; */
+}

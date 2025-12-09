@@ -1,0 +1,32 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  HomePage,
+  AthletesPage,
+  RegistrerAthletesPage,
+  FinancesPage,
+  VenuePage,
+  ManageVenuesPage,
+} from "../pages";
+import Layout from "../components/layout/Layout";
+//import MainHeader from "../components/shared/MainHeader";
+//import Header from "../components/layout/Header";
+//import Footer from "../components/layout/Footer";
+
+const AppRouting = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/Athletes" element={<AthletesPage />} />
+          <Route path="/Register" element={<RegistrerAthletesPage />} />
+          <Route path="/Finances" element={<FinancesPage />} />
+          <Route path="/Venue" element={<VenuePage />} />
+          <Route path="/ManageVenues" element={<ManageVenuesPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default AppRouting;

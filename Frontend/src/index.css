@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+body {
+	background-color: #222222;
+	color: #F3F3F3;
+}
+
+.card {
+	@apply bg-[#474747] border border-[#11B7FF] rounded-xl shadow-md p-6;
+}
+
+.badge {
+	@apply inline-block px-4 py-1 bg-[#BBFF00] text-[#222222] rounded-full font-semibold;
+}
+

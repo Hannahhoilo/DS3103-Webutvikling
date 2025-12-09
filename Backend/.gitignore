@@ -1,0 +1,44 @@
+########################
+# Build output (.NET)  #
+########################
+
+bin/
+obj/
+out/
+TestResults/
+[Ll]ogs/
+*.log
+
+# VS + tooling cache
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider / JetBrains / ReSharper
+.idea/
+*.sln.iml
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+*.nuget.props
+*.nuget.targets
+
+# Azure / publish
+PublishProfiles/
+*.pubxml.user
+
+# Diverse
+*.cache
+*.pdb
+*.tmp
+*.bak
+*.dbmdl
+*.jfm
+*.svclog
