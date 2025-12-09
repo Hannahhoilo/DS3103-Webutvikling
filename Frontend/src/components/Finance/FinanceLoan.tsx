@@ -39,4 +39,4 @@ export default function LoanComponent() {
       onClick={handleLoan}>Take Loan</button>
     </div>
   );
-}
+} //ok
