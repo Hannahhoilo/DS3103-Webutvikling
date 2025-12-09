@@ -42,3 +42,7 @@ PublishProfiles/
 *.dbmdl
 *.jfm
 *.svclog
+
+#Ignore SqLite
+Database/*.db-shm
+Database/*.db-wal

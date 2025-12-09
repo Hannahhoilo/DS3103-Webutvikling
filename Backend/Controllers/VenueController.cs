@@ -1,3 +1,150 @@
+
+using Microsoft.AspNetCore.Mvc;
+using Backend.Context;
+using Backend.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore;
+//using VenuesAPI.Models;
+
+namespace Backend.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+// alle apikontrollere skal arvve fra controllerbase
+
+
+public class VenueController : ControllerBase
+{
+	private readonly SWContext _context;
+	private readonly IWebHostEnvironment _webHostEnvironment;
+	public VenueController(SWContext context, IWebHostEnvironment webHostEnvironment)
+	{
+		_context = context;
+		_webHostEnvironment = webHostEnvironment;
+	}
+
+ 	// GET
+ 	[HttpGet] // endepunkt http://localohost:XXXX/venue ? 
+ 	public async Task<ActionResult<List<Venue>>> Get()
+ 	{
+ 		try
+ 		{
+ 			List<Venue> venues = await _context.Venues.ToListAsync();
+ 			return Ok(venues);
+ 		}
+ 		catch
+ 		{
+ 			// Noe gikk galt på server
+ 			return StatusCode(500); 
+ 		}
+ 	}
+
+ 	// POST
+ 	[HttpPost]
+ 	public async Task<IActionResult> Post(Venue venue)
+ 	{
+ 		try
+ 		{
+ 			_context.Venues.Add(venue);
+ 			await _context.SaveChangesAsync();
+ 			return Created("", venue);
+ 		}
+ 		catch
+ 		{
+ 			return StatusCode(500, "Server side error when getting venues");
+ 		} 
+ 	}
+
+	// PUT = redigere informasjon
+	[HttpPut]
+	public async Task<IActionResult> Put (Venue editedVenue)
+	{
+		try
+		{
+			_context.Venues.Entry(editedVenue).State = EntityState.Modified;
+			await _context.SaveChangesAsync();
+
+			// NoContent betyr "OK, men ingen data å returnere"
+			return NoContent();
+		}
+		catch
+		{
+			return StatusCode(500);
+		}
+	}
+
+	// Endpoint for image upload 
+	[HttpPost("imgupload")]
+
+		public async Task<IActionResult> PostImage(IFormFile file) // <- iformfile er metoden for å hente bildet/pdf/fil
+	{
+		try
+		{
+			/* filstien der bildet skal lagres, deretter kommer en 
+			metode som har med filstrøm å gjøre, er et objekt som tar tak i bildedata og bokstavelgi 
+			talkt lagrer det i bildemappen*/
+			//filsti: 
+			string webRootPath = _webHostEnvironment.WebRootPath;
+			// kommer ril å være en kombinasjon av webroottbpathen med hvor det ligger og navnet på bildet : 
+			
+			Console.WriteLine("WebRootPath: " + _webHostEnvironment.WebRootPath);
+
+
+			string absolutePath = Path.Combine(
+				webRootPath,
+				"images",
+				file.FileName
+			);
+			Console.WriteLine("Saving to: " + absolutePath);
+
+			using (var fileStream = new FileStream(absolutePath, FileMode.Create))
+			{
+				//nårman lager en filstrøm lager ma n en åpen forbindelse, den må åpnes og lukkes. sørger for at man åpner og lukker filstrømmen t il riktig tid 
+				await file.CopyToAsync(fileStream);
+			}
+
+			return Created();
+		}
+		catch
+		{
+			return StatusCode(500, "Image upload failed in server!"); // serverside feil
+		}
+	}
+
+	/*
+	public async Task<IActionResult> UploadImage([FromForm] IFormFile file)
+	{
+		if (file == null || file.Length == 0)
+		return BadRequest("No file uploaded!");
+
+		try
+		{
+			string webRootPath = _webHostEnvironment.WebRootPath;
+			string imagesPath = Path.Combine(webRootPath, "images");
+
+			if (!Directory.Exists(imagesPath))
+			Directory.CreateDirectory(imagesPath);
+
+			string filePath = Path.Combine(imagesPath, file.FileName);
+
+			using (var stream = new FileStream(filePath, FileMode.Create))
+			{
+				await file.CopyToAsync(stream);
+			}
+
+			return Ok(new { FileName = file.FileName });
+		}
+		catch
+		{
+			return StatusCode(500, "Error uploading the image.");
+		}
+	} */
+}
+
+
+
+
+
 /*
 ----------------------------
 git pull origin main
@@ -26,14 +173,12 @@ https://react.dev/reference/react/useCo
 ntext
 
 */
-
+/*
 using Microsoft.AspNetCore.Mvc;
 using Backend.Context;
 using Backend.Models;
 using Microsoft.EntityFrameworkCore;
-
-
-// DETTE ER EN TEST 
+//using VenuesAPI.Models;
 
 namespace Backend.Controllers;
 
