@@ -2,9 +2,9 @@ import type { IAthlete } from "./IAthlete";
 import type { IAthleteSingleResponse } from "./ResponseInterfaces";
 
 export interface IAthletesContext {
-  athletes: IAthlete[];
-  getAthleteQuantity: () => number;
-  saveAthlete: (newAthlete: IAthlete) => Promise<IAthleteSingleResponse>;
-  statusMessage: string;
-  loadAthletes: () => Promise<void>;
+  athletes: IAthlete[]; //listen over alle atleter
+  getAthleteQuantity: () => number; //Hvor mange utøvere det er
+  saveAthlete: (newAthlete: IAthlete) => Promise<IAthleteSingleResponse>; //for å lage ny atleter
+  statusMessage: string; //melding om feil
+  loadAthletes: () => Promise<void>; //Hente alle utøvere på nytt
 }

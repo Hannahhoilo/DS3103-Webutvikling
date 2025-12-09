@@ -20,7 +20,7 @@ export const getAthletes = async (): Promise<IAthleteListResponse> => {
     //Hvis det går bra
     return {
       success: true,
-      data: response.data, //Dett er dataen fra API-et
+      data: response.data, //Dette er dataen fra API-et
     };
 
     //Hvis det ikke går som forventet

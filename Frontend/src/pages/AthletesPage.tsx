@@ -20,6 +20,7 @@ const AthletesPage = () => {
   return (
     <section className="max-w-3xl mx-auto mt-12 text-center">
       <h1 className="text-3xl font-bold mb-4">Athletes</h1>
+      <input className="border" type="number" />
 
       {/* Det er her statusmeldingen blir vist, hvis den finnes */}
       {feedbackMessage}

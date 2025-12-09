@@ -8,6 +8,7 @@ import {
   ManageVenuesPage,
 } from "../pages";
 import Layout from "../components/layout/Layout";
+import { AthletesProvider } from "../contexts/AthleteContext";
 //import MainHeader from "../components/shared/MainHeader";
 //import Header from "../components/layout/Header";
 //import Footer from "../components/layout/Footer";
@@ -15,16 +16,18 @@ import Layout from "../components/layout/Layout";
 const AppRouting = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/Athletes" element={<AthletesPage />} />
-          <Route path="/Register" element={<RegistrerAthletesPage />} />
-          <Route path="/Finances" element={<FinancesPage />} />
-          <Route path="/Venue" element={<VenuePage />} />
-          <Route path="/ManageVenues" element={<ManageVenuesPage />} />
-        </Route>
-      </Routes>
+      <AthletesProvider>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/Athletes" element={<AthletesPage />} />
+            <Route path="/Register" element={<RegistrerAthletesPage />} />
+            <Route path="/Finances" element={<FinancesPage />} />
+            <Route path="/Venue" element={<VenuePage />} />
+            <Route path="/ManageVenues" element={<ManageVenuesPage />} />
+          </Route>
+        </Routes>
+      </AthletesProvider>
     </BrowserRouter>
   );
 };

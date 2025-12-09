@@ -69,4 +69,3 @@ export const AthletesProvider = ({ children }: Props) => {
     </AthletesContext.Provider>
   );
 };
-//fisk
