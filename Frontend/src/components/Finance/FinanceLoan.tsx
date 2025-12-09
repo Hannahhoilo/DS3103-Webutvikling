@@ -3,7 +3,7 @@ import FinanceService from "../../services/FinanceService";
 
    function LoanComponent() {
   const [loanAmount, setLoanAmount] = useState<number | "">("");
-  const [finance, setFinance] = useState<any>(null);
+  const [setFinance] = useState<any>(null);
 
   useEffect(() => {
     FinanceService.getMoney().then(setFinance);
