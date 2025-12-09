@@ -29,4 +29,21 @@ public async Task<ActionResult<Finance>> Get()
     return Ok(finance);
 }
 
+[HttpPost("loan")]
+    public async Task<IActionResult> TakeLoan([FromBody] int amount)
+    {
+        if (amount <= 0)
+            return BadRequest("Amount must be greater than zero");
+
+        var finance = await _context.Finances.FirstOrDefaultAsync();
+        if (finance == null)
+            return NotFound("Finance record not found");
+
+        finance.MoneyLeft += amount;  // 👈 Øk tilgjengelige penger
+
+        await _context.SaveChangesAsync();
+
+        return Ok(finance);
+    }
+
 }
