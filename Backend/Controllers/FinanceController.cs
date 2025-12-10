@@ -46,21 +46,5 @@ public async Task<ActionResult<Finance>> Get()
         return Ok(finance);
     }
 
-//tester
-    [HttpPut("{id}/register")]
-public async Task<IActionResult> RegisterAthlete(int id)
-{
-    var athlete = await _context.Athletes.FindAsync(id);
-
-    if (athlete == null)
-        return NotFound();
-
-    athlete.PurchaseStatus = true;
-
-    await _context.SaveChangesAsync();
-
-    return Ok(athlete);
-}
-
 
 }
