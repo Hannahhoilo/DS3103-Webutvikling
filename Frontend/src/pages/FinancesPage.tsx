@@ -20,7 +20,7 @@ const FinancesPage = () => {
     <>
       {/* Viser hvor mye penger som er igjen */}
 
-      <div className="flex items-start gap-8">
+      <div className="flex items-start gap-20"> {/*skaper distanse mellom komponenter*/}
       {finance && <FinanceMoney money={finance} /> } 
       <LoanComponent/>
       </div>
