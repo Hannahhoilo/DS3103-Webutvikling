@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AthletesContext } from "../../contexts/AthleteContext";
 
+
 function FinanceAthletes() {
   const athletesContext = useContext(AthletesContext);
 
@@ -40,9 +41,12 @@ function FinanceAthletes() {
                 Registered: {a.purchaseStatus ? "Yes" : "No"}
               </p>
 
-              <button className="bg-black text-white block mx-auto mt-auto rounded-md py-2 px-4 hover:bg-gray-700 transition">
-                Register
-              </button>
+           <button
+            onClick={() => athletesContext?.registerAthlete(a.id)}
+            className="bg-black text-white block mx-auto mt-auto rounded-md py-2 px-4 hover:bg-gray-700 transition"
+            >
+            Register
+            </button>
 
             </div>
           ))}

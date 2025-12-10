@@ -55,12 +55,32 @@ export const AthletesProvider = ({ children }: Props) => {
     return response;
   };
 
+
+  //ian test
+    const registerAthlete = async (id: number): Promise<void> => {
+      const response = await AthleteService.registerAthlete(id);
+  
+      if (response.success && response.data) {
+        const updatedAthlete = response.data;
+  
+        setAthletes((prev) =>
+          prev.map((a) => (a.id === id ? updatedAthlete : a))
+        );
+  
+        setStatusMessage("");
+      } else {
+        setStatusMessage("Failed to register athlete");
+      }
+    };
+
+
   const value: IAthletesContext = {
     athletes,
     getAthleteQuantity,
     saveAthlete,
     statusMessage,
     loadAthletes: loadAthletesService,
+    registerAthlete //ian test
   };
 
   

@@ -7,4 +7,6 @@ export interface IAthletesContext {
   saveAthlete: (newAthlete: IAthlete) => Promise<IAthleteSingleResponse>; //for å lage ny atleter
   statusMessage: string; //melding om feil
   loadAthletes: () => Promise<void>; //Hente alle utøvere på nytt
+  registerAthlete: (id: number) => Promise<void>; //oppdater registret eller ikke
+
 }

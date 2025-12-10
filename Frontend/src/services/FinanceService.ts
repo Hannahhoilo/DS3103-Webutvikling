@@ -43,9 +43,6 @@ const takeLoan = async (amount: number): Promise<IFinanceResponse> => {
 
 
 
-
-
-
 export default {
   getMoney,
   takeLoan,

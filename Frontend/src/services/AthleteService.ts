@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 // Det er IAthlete som beskriver hvordan objekter "athlete" skal se ut.
 import type { IAthlete } from "../interfaces/IAthlete";
 
@@ -8,7 +9,7 @@ import type {
   IAthleteSingleResponse,
 } from "../interfaces/ResponseInterfaces";
 
-const endpoint = "http://localhost:5285/api/athletes";
+const endpoint = "http://localhost:5285/api/Athletes"; //gjorde a stor
 
 //Hent alle athletes
 export const getAthletes = async (): Promise<IAthleteListResponse> => {
@@ -54,7 +55,32 @@ const postAthlete = async (
   }
 };
 
+
+//put test
+const registerAthlete = async (
+  id: number
+): Promise<IAthleteSingleResponse> => {
+  try {
+    const response = await axios.put<IAthlete>(
+      `${endpoint}/${id}/register`
+    );
+
+    return {
+      success: true,
+      data: response.data,
+    };
+  } catch {
+    return {
+      success: false,
+      data: null,
+    };
+  }
+};
+
+
+
 export default {
   postAthlete,
   getAthletes,
+  registerAthlete
 };
