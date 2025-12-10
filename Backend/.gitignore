@@ -44,5 +44,6 @@ PublishProfiles/
 *.svclog
 
 #Ignore SqLite
+Database/*.db
 Database/*.db-shm
 Database/*.db-wal
