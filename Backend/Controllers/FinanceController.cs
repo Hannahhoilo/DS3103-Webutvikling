@@ -46,7 +46,7 @@ public async Task<ActionResult<Finance>> Get()
         return Ok(finance);
     }
 
-//test
+//tester
     [HttpPut("{id}/register")]
 public async Task<IActionResult> RegisterAthlete(int id)
 {
