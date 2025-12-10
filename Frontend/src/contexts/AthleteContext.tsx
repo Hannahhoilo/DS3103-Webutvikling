@@ -63,6 +63,7 @@ export const AthletesProvider = ({ children }: Props) => {
     loadAthletes: loadAthletesService,
   };
 
+  
   return (
     <AthletesContext.Provider value={value}>
       {children}

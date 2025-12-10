@@ -26,11 +26,11 @@ function FinanceAthletes() {
 
               
             
-       <img
-        src={`http://localhost:5285/images/${a.image}`}
-        alt={a.name}
-        className="w-full h-32 rounded-lg mb-2" //h-32 gir høyde, kan endres/fjernes men bildene blir ulike
-        />
+             <img
+             src={`http://localhost:5285/images/${a.image}`}
+             alt={a.name}
+             className="w-full rounded-lg mb-2" //h-32 gir høyde, kan endres/fjernes men bildene blir ulike
+            />
 
               <h3 className="text-lg font-medium">{a.name}</h3>
               <p className="text-sm text-white-700">Gender: {a.gender}</p>
