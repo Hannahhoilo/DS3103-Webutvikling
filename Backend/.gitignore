@@ -1,40 +1,27 @@
-########################
-# Build output (.NET)  #
-########################
-
+## Build
 bin/
 obj/
-out/
-TestResults/
-[Ll]ogs/
-*.log
-
-# VS + tooling cache
-.vs/
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
 
-# Rider / JetBrains / ReSharper
-.idea/
-*.sln.iml
-_ReSharper*/
-*.[Rr]e[Ss]harper
-*.DotSettings.user
+## Visual Studio / tooling
+.vs/
+.vscode/
 
-# NuGet
+## NuGet
 *.nupkg
 *.snupkg
 packages/
 *.nuget.props
 *.nuget.targets
 
-# Azure / publish
+## Azure / publish
 PublishProfiles/
 *.pubxml.user
 
-# Diverse
+## Diverse
 *.cache
 *.pdb
 *.tmp
@@ -43,7 +30,7 @@ PublishProfiles/
 *.jfm
 *.svclog
 
-#Ignore SqLite
+## Ignore SQLite
 Database/SW.db
 Database/*.db-shm
 Database/*.db-wal

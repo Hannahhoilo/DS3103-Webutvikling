@@ -1,4 +1,4 @@
-import VenueAdd from "../components/Venues/VenueAdd";
+
 //import VenueItem from "../components/Venues/VenueItem";
 import VenueList from "../components/Venues/VenueList";
 
@@ -15,7 +15,6 @@ const VenuePage = () => {
           <span className="badge mt-2">Capacity: 500</span>
         </div> 
       </div>
-      <VenueAdd />
       <VenueList />
     </section>
   );
