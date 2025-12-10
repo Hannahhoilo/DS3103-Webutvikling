@@ -39,6 +39,21 @@ public class VenueController : ControllerBase
  		}
  	}
 
+	// GET - id 
+	[HttpGet("{id}")]
+	public async Task<ActionResult<Venue>> Get(int id)
+	{
+		Venue? venue = await _context.Venues.FindAsync(id);
+		if (venue != null)
+		{
+			return Ok(venue);
+		}
+		else
+		{
+			return NotFound("Venue with this id is not found!");
+		}
+	}
+
  	// POST
  	[HttpPost]
  	public async Task<IActionResult> Post(Venue venue)
@@ -52,6 +67,8 @@ public class VenueController : ControllerBase
  		catch
  		{
  			return StatusCode(500, "Server side error when getting venues");
+			// fra slides:
+			// return CreadedAtAction("Get", new { id = newVenue.Id }, newVenue );
  		} 
  	}
 
