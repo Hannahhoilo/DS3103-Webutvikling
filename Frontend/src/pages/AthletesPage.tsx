@@ -20,32 +20,46 @@ const AthletesPage = () => {
 
   //---- Søkefelt og funkjson ----
 
+  //Her er setFilteredAthletes den funkjsonen som blir brukt for å oppdatere Athletes på siden.
   const [filteredAthletes, setFilteredAthletes] = useState<IAthlete[]>([]);
 
-  const nameSearchInput = useRef<HTMLInputElement | null>(null);
+  const nameOrIdSearchInput = useRef<HTMLInputElement | null>(null);
 
+  //useEffect kjører hver gang athletes endrer seg.
   useEffect(() => {
     setFilteredAthletes(athletes);
   }, [athletes]);
 
   //funksjonen som kjører når du trykker på "søk"
   const filterAthletes = () => {
-    if (nameSearchInput.current == null) {
+    if (nameOrIdSearchInput.current == null) {
       return;
     }
 
-    const searchValue = nameSearchInput.current.value.trim().toLowerCase();
+    //Det er "nameSearchInput.current.value" som er det brukeren har skrevet.
+    const searchValue = nameOrIdSearchInput.current.value.trim().toLowerCase();
 
+    //hvis søkerfeltet er tomt så vis alle athletes.
     if (searchValue === "") {
       setFilteredAthletes(athletes);
       return;
     }
 
-    const findAthlete = athletes.filter((athlete) =>
-      athlete.name.toLowerCase().includes(searchValue)
-    );
+    // const findAthlete = athletes.filter((athlete) =>
+    //   athlete.name.toLowerCase().includes(searchValue)
+    // );
 
-    setFilteredAthletes(findAthlete);
+    const findAthleteNameOrId = athletes.filter((athleteCheck) => {
+      const searchedId = athleteCheck.id.toString();
+      const searchedName = athleteCheck.name.toLowerCase();
+
+      return (
+        searchedId.includes(searchValue) || searchedName.includes(searchValue)
+      );
+    });
+
+    //Her sier vi oppdater "filteredAthletes" med DENNE filtrerte listen.
+    setFilteredAthletes(findAthleteNameOrId);
   };
 
   return (
@@ -53,10 +67,10 @@ const AthletesPage = () => {
       <h1 className="text-3xl font-bold mb-4">Athletes</h1>
       <div className="mb-7 flex gap-2">
         <input
-          ref={nameSearchInput}
-          className="flex-1 border border-grey-300 px-3 py-2"
+          ref={nameOrIdSearchInput}
+          className="flex-1 border rounded border-grey-300 px-3 py-2"
           type="search"
-          placeholder="Search for athlete (first name)"
+          placeholder="Search for athlete by name or ID"
 
           // OnChange aktiveres når brukeren søker.
           //Dette oppdaterer searchAthlete også kan vi bruke den teksten for å filtrere på athlete.

@@ -17,7 +17,7 @@ const AthleteItem = ({ athlete }: AthleteItemData) => {
       />
       <div className="bg-gradient-to-r from-[#063A7F] to-[#11B7FF]  text-white px-6 pt-4 pb-5 text-left">
         <h3 className="font-bold text-lg">
-          {athlete.name} ({athlete.gender})
+          {athlete.id}. {athlete.name} ({athlete.gender})
         </h3>
         <p className="mb-1">Price: {athlete.price} NOK</p>
         {/* Kjøpt eller tilgjengelig */}
