@@ -73,6 +73,24 @@ public class VenueController : ControllerBase
 		}
 	}
 
+	// DELETE - fra slides 
+	[HttpDelete("{id}")]
+
+	public async Task<IActionResult> Delete(int id)
+	{
+		Venue? venue = await _context.Venues.FindAsync(id);
+		if (venue != null)
+		{
+			_context.Venues.Remove(venue);
+			await _context.SaveChangesAsync();
+			return NoContent(); //NoContent er en 204-meldingsom betyr alt OK trenger ikke returnere noe 
+		}
+		else
+		{
+			return NotFound();
+		}
+	}
+
 	// Endpoint for image upload 
 	[HttpPost("imgupload")]
 
