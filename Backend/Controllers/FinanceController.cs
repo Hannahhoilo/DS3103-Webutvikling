@@ -59,6 +59,11 @@ public async Task<IActionResult> PurchaseAthlete(int athleteId)
     var finance = await _context.Finances.FirstOrDefaultAsync();
     if (finance == null) return NotFound();
 
+     if (finance.MoneyLeft < athlete.Price)
+    {
+        return BadRequest("Not enough money to purchase this athlete");
+    }
+
     finance.MoneyLeft -= athlete.Price;
     finance.MoneySpent += athlete.Price;
     finance.NumberOfPurchases++;
