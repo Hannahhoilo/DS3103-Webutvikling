@@ -1,4 +1,7 @@
+import { useContext, useState } from "react";
 import type { IAthlete } from "../../interfaces/IAthlete";
+import { AthletesContext } from "../../contexts/AthleteContext";
+import type { IAthletesContext } from "../../interfaces/IAthletesContext";
 
 interface AthleteItemData {
   athlete: IAthlete;
@@ -6,6 +9,10 @@ interface AthleteItemData {
 
 const AthleteItem = ({ athlete }: AthleteItemData) => {
   const imageUrl = "http://localhost:5285/images/" + athlete.image;
+
+  const { updateAthlete } = useContext(AthletesContext) as IAthletesContext;
+
+  const { deleteAthlete } = useContext(AthletesContext) as IAthletesContext;
 
   return (
     //kortet med tennis spillere
@@ -20,6 +27,7 @@ const AthleteItem = ({ athlete }: AthleteItemData) => {
         {/* Knapper for Edit og Delete. */}
         <div className="absolute top-2 right-2 flex gap-2">
           <button
+            onClick={}
             className="bg transparent border border-white text-white text-xs px-3 py-1 rounded cursor-pointer
               hover:bg-gradient-to-r
               hover:from-[#063A7F]
