@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { IAthlete } from "../../interfaces/IAthlete";
 import AthleteItem from "./AthleteItem";
 
@@ -10,7 +11,31 @@ const AthleteList = ({ athletes }: AthleteListData) => {
   const getAthleteJSX = () => {
     //Her brukes .map som går gjennom alle elementene i listen og lager et AthleteItem av alle athletes
     const athleteJSX = athletes.map((athlete, index) => {
-      return <AthleteItem key={"athlete" + index} athlete={athlete} />;
+      let isLeftColumn = false;
+
+      if (
+        index === 0 ||
+        index === 2 ||
+        index === 4 ||
+        index === 6 ||
+        index === 8 ||
+        index === 10 ||
+        index === 12 ||
+        index === 14 ||
+        index === 16
+      ) {
+        isLeftColumn = true;
+      } else {
+        isLeftColumn = false;
+      }
+
+      return (
+        <AthleteItem
+          key={"athlete" + index}
+          athlete={athlete}
+          isLeftColumn={isLeftColumn}
+        />
+      );
       //Det som returneres her blir noe slikt:
       // <AthleteItem key="athlete0" athlete={...} /> osv  pr. athlete.
       //det er index som setter plassen i listen den har.

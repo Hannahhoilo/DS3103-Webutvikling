@@ -67,19 +67,27 @@ const AthleteEdit = ({ athlete, onClose }: AthleteEditInput) => {
     );
   }
   return (
-    <section className="mt-3 p-3 border rounded bg-white text-black">
+    <section className="mt-3 p-3 border rounded bg-gradient-to-r from-[#063A7F] to-[#11B7FF]  text-white">
       <h3>Edit Athlete</h3>
       <div>
         {/* NAVN */}
         <label>Name</label>
-        <input className="border" ref={nameInput} type="text" />
+        <input
+          className="border bg-white text-black"
+          ref={nameInput}
+          type="text"
+        />
       </div>
 
       {/* PRIS */}
 
       <div>
         <label>Price</label>
-        <input className="border" ref={priceInput} type="number" />
+        <input
+          className="border bg-white text-black"
+          ref={priceInput}
+          type="number"
+        />
       </div>
 
       {/* LAGRE OG AVBRYT KNAPP*/}
