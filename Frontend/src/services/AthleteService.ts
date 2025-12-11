@@ -6,6 +6,7 @@ import type { IAthlete } from "../interfaces/IAthlete";
 import type {
   IAthleteListResponse,
   IAthleteSingleResponse,
+  IDefaultResponse,
 } from "../interfaces/ResponseInterfaces";
 
 const endpoint = "http://localhost:5285/api/Athletes"; //gjorde a stor
@@ -71,8 +72,22 @@ const registerAthlete = async (id: number): Promise<IAthleteSingleResponse> => {
   }
 };
 
+//
+const putAthletes = async (
+  editedAthlete: IAthlete
+): Promise<IDefaultResponse> => {
+  try {
+    await axios.put(endpoint, editedAthlete);
+
+    return { success: true };
+  } catch {
+    return { success: false };
+  }
+};
+
 export default {
   postAthlete,
   getAthletes,
   registerAthlete,
+  putAthletes,
 };
