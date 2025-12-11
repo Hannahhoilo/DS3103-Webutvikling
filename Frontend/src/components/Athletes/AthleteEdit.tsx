@@ -29,7 +29,8 @@ const AthleteEdit = ({ athlete, onClose }: AthleteEditInput) => {
     const priceText = priceInput.current.value.trim();
 
     if (nameText === "" || priceText === "") {
-      seteditMessage("You need to ");
+      seteditMessage("You need to fill inn both name and price");
+      return;
     }
 
     //Pristeksten til tall
