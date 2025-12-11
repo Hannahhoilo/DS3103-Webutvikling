@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 // Det er IAthlete som beskriver hvordan objekter "athlete" skal se ut.
 import type { IAthlete } from "../interfaces/IAthlete";
 
@@ -55,15 +54,10 @@ const postAthlete = async (
   }
 };
 
-
 //put test
-const registerAthlete = async (
-  id: number
-): Promise<IAthleteSingleResponse> => {
+const registerAthlete = async (id: number): Promise<IAthleteSingleResponse> => {
   try {
-    const response = await axios.put<IAthlete>(
-      `${endpoint}/${id}/register`
-    );
+    const response = await axios.put<IAthlete>(`${endpoint}/${id}/register`);
 
     return {
       success: true,
@@ -77,10 +71,8 @@ const registerAthlete = async (
   }
 };
 
-
-
 export default {
   postAthlete,
   getAthletes,
-  registerAthlete
+  registerAthlete,
 };

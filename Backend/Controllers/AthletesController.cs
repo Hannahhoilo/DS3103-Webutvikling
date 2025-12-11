@@ -20,7 +20,7 @@ namespace Backend.Controllers
 
         // GET: api/athletes 
 
-        
+
         [HttpGet]
         public async Task<ActionResult<List<Athlete>>> Get()
         {
@@ -36,6 +36,42 @@ namespace Backend.Controllers
 
 
         }
+
+        //PUT - For å redigere Athletes
+        [HttpPut] 
+        public async Task<IActionResult> Put(Athlete editedAthlete)
+        {
+            try
+            {
+                //Vi må finne riktig athlete.
+                var athleteFromDb = await _context.Athletes.FindAsync(editedAthlete.Id);
+
+                if (athleteFromDb == null)
+                {
+                    return NotFound(); //404 hvis id ikke finnes.
+                }
+
+                //Feltene som skal endres
+                athleteFromDb.Name = editedAthlete.Name;
+                athleteFromDb.Price = editedAthlete.Price;
+                // athleteFromDb.Image = editedAthlete.Image;
+
+                //Lagrer nye endringer
+                await _context.SaveChangesAsync();
+
+                return NoContent(); //204
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+
+        }
+
+
+
+
+
 
         //tester ian
     [HttpPut("{id}/register")]
