@@ -1,5 +1,8 @@
 import type { IAthlete } from "./IAthlete";
-import type { IAthleteSingleResponse } from "./ResponseInterfaces";
+import type {
+  IAthleteSingleResponse,
+  IDefaultResponse,
+} from "./ResponseInterfaces";
 
 export interface IAthletesContext {
   athletes: IAthlete[]; //listen over alle atleter
@@ -8,5 +11,5 @@ export interface IAthletesContext {
   statusMessage: string; //melding om feil
   loadAthletes: () => Promise<void>; //Hente alle utøvere på nytt
   registerAthlete: (id: number) => Promise<void>; //oppdater registret eller ikke
-
+  updateAthlete: (editedAthlete: IAthlete) => Promise<IDefaultResponse>; //Redigere Athletes
 }
