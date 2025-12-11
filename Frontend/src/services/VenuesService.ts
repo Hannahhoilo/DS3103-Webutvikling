@@ -6,7 +6,12 @@ const endpointImgUpload = "http://localhost:5285/api/venue/imgupload";
 
 interface IVenuesListResponse {
   success: boolean;
-  data: IVenue[] | null;
+  data: IVenue[] | null; // en liste
+   //ORIGINALT VAR DENNE HER 
+}
+interface IVenuesSingleResponse {
+  success: boolean;
+  data: IVenue | null; // objekt
 }
 
 const getAllVenues = async (): Promise<IVenuesListResponse> => {
@@ -52,7 +57,43 @@ const postVenue = async (venue: IVenue, image: File) => {
   formData.delete("file");
 };
 
-export default { getAllVenues, postVenue };
+const getVenueById = async (id: number): Promise<IVenuesSingleResponse> => {
+  // promisen her er ssammenlignbar med Task i backend, handler om å redegjøre en prosess som er asynxton til å jobbe også skjerdet noe
+  try {
+    const response = await axios.get(`${endpoint}/${id}`);
+    return {
+      success: true,
+      data: response.data, // et enkelt-venue
+    };
+  } catch {
+    return {
+      success: false,
+      data: null,
+    };
+  }
+};
+
+// TODO: Flytte interfacene her til en ny fil? Ref. kommentaren ovenfor.
+interface IDefaultResponse{
+    success: boolean
+}
+
+const putVenue = async (
+  editedVenue: IVenue
+): Promise<IDefaultResponse> => {
+  try {
+    const response = await axios.put(endpoint, editedVenue);
+    return {
+      success: true,
+    };
+  } catch {
+    return {
+      success: false,
+    };
+  }
+};
+
+export default { getAllVenues, postVenue, getVenueById, putVenue };
 
 /* 
 vi har nå endepunkt for funny hats så nå må vi legge inn endpoint for imageupload 

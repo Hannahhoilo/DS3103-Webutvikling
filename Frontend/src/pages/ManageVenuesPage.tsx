@@ -1,3 +1,5 @@
+import ManageVenueItem from "../components/Venues/ManageVenueItem";
+import ManageVenueList from "../components/Venues/ManageVenueList";
 import VenueAdd from "../components/Venues/VenueAdd";
 
 const ManageVenuesPage = () => {
@@ -6,6 +8,8 @@ const ManageVenuesPage = () => {
       <h1 className="text-3xl font-bold mb-4">Manage Venues</h1>
       <p className="text-lg">Here you can manage venues</p>
       <VenueAdd />
+      <ManageVenueItem />
+      <ManageVenueList />
     </section>
   );
 };
