@@ -56,7 +56,7 @@ export const AthletesProvider = ({ children }: Props) => {
   };
 
 
-  //ian test
+  //finance test
     const registerAthlete = async (id: number): Promise<void> => {
       const response = await AthleteService.registerAthlete(id);
   
@@ -73,6 +73,8 @@ export const AthletesProvider = ({ children }: Props) => {
       }
     };
 
+   
+
 
   const value: IAthletesContext = {
     athletes,
@@ -80,7 +82,7 @@ export const AthletesProvider = ({ children }: Props) => {
     saveAthlete,
     statusMessage,
     loadAthletes: loadAthletesService,
-    registerAthlete //ian test
+    registerAthlete//finance test
   };
 
   

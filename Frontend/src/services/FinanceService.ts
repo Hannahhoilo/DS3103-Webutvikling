@@ -42,8 +42,26 @@ const takeLoan = async (amount: number): Promise<IFinanceResponse> => {
 };
 
 
+//oppdater values
+const purchaseAthlete = async (athleteId: number) => {
+  try {
+    const response = await axios.put(`${fEndpoint}/purchase/${athleteId}`);
+
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch {
+    return {
+      success: false,
+      data: null,
+    };
+  }
+};
+
 
 export default {
   getMoney,
   takeLoan,
+  purchaseAthlete
 };

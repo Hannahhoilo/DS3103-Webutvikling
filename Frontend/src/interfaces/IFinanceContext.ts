@@ -1,5 +1,9 @@
-import type { IAthlete } from "./IAthlete";
+import { type IFinance } from "./IFinance";
 
-export interface IFinanceAthleteContext{
-    financeAtheltes: IAthlete[];
+export interface IFinanceContext {
+  finance: IFinance | null;
+  loadFinance: () => Promise<void>;
+  purchaseAthlete: (athleteId: number, athletePrice: number) => Promise<boolean>;
+  statusMessage: string;
 }
+
