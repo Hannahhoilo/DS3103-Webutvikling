@@ -26,7 +26,7 @@ export const FinanceProvider = ({ children }: Props) => {
     loadFinance();
   }, []);
 
-  // 👉 Purchase Athlete with MONEY CHECK
+  // Purchase Athlete 
   const purchaseAthlete = async (
     athleteId: number,
     athletePrice: number
@@ -36,7 +36,7 @@ export const FinanceProvider = ({ children }: Props) => {
       return false;
     }
 
-    // ❗ Ikke nok penger
+    //Ikke nok penger
     if ((finance.moneyLeft ?? 0) < athletePrice) {
       setStatusMessage("Not enough money to purchase this athlete");
       return false;

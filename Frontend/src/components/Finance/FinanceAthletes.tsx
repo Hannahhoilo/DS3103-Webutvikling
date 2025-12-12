@@ -50,20 +50,16 @@ function FinanceAthletes() {
                 Registered: {a.purchaseStatus ? "Yes" : "No"}
               </p>
                     <button
-  className="bg-black text-white mx-auto mt-auto rounded-md p-3 hover:bg-gray-500"
-  onClick={async () => {
-    const success = await financeContext?.purchaseAthlete(a.id, a.price);
+                      className="bg-black text-white mx-auto mt-auto rounded-md p-3 hover:bg-gray-500"
+                       onClick={async () => {
+                    const success = await financeContext?.purchaseAthlete(a.id, a.price);
 
-    if (success) {
-      athletesContext?.registerAthlete(a.id);
-    }
-  }}
->
-  Register
-</button>
-
-
-
+                    if (success) {
+                    athletesContext?.registerAthlete(a.id);
+                 }
+                    }}>
+                      Register
+                  </button>
             </div>
           ))}
       </div>
