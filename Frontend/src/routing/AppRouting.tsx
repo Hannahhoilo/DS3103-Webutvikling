@@ -9,6 +9,7 @@ import {
 } from "../pages";
 import Layout from "../components/layout/Layout";
 import { AthletesProvider } from "../contexts/AthleteContext";
+import { FinanceProvider } from "../contexts/FinanceContext";
 //import MainHeader from "../components/shared/MainHeader";
 //import Header from "../components/layout/Header";
 //import Footer from "../components/layout/Footer";
@@ -16,6 +17,7 @@ import { AthletesProvider } from "../contexts/AthleteContext";
 const AppRouting = () => {
   return (
     <BrowserRouter>
+     <FinanceProvider> {/* fjern eller endre her*/}
       <AthletesProvider>
         <Routes>
           <Route element={<Layout />}>
@@ -28,6 +30,7 @@ const AppRouting = () => {
           </Route>
         </Routes>
       </AthletesProvider>
+       </FinanceProvider>
     </BrowserRouter>
   );
 };
