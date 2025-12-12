@@ -22,7 +22,9 @@ const AthleteList = ({ athletes }: AthleteListData) => {
         index === 10 ||
         index === 12 ||
         index === 14 ||
-        index === 16
+        index === 16 ||
+        index === 18 ||
+        index === 20
       ) {
         isLeftColumn = true;
       } else {

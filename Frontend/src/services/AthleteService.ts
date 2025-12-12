@@ -9,7 +9,8 @@ import type {
   IDefaultResponse,
 } from "../interfaces/ResponseInterfaces";
 
-const endpoint = "http://localhost:5285/api/Athletes"; //gjorde a stor
+const endpoint = "http://localhost:5285/api/Athletes";
+const imageUploadEndPoint = "http://localhost:5285/api/ImageUploadAthlete";
 
 //Hent alle athletes
 export const getAthletes = async (): Promise<IAthleteListResponse> => {
@@ -85,9 +86,30 @@ const putAthletes = async (
   }
 };
 
+const uploadImage = async (image: File): Promise<IDefaultResponse> => {
+  try {
+    const formData = new FormData();
+    formData.append("file", image);
+
+    await axios({
+      url: imageUploadEndPoint,
+      method: "POST",
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+
+    formData.delete("file");
+
+    return { success: true };
+  } catch {
+    return { success: false };
+  }
+};
+
 export default {
   postAthlete,
   getAthletes,
   registerAthlete,
   putAthletes,
+  uploadImage,
 };

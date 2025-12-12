@@ -1,7 +1,8 @@
-import { useRef, useContext, useState } from "react";
+import { useRef, useContext, useState, type ChangeEvent } from "react";
 import type { IAthlete } from "../../interfaces/IAthlete";
 import { AthletesContext } from "../../contexts/AthleteContext";
 import type { IAthletesContext } from "../../interfaces/IAthletesContext";
+import AthleteService from "../../services/AthleteService";
 
 interface AthleteEditInput {
   athlete: IAthlete;
@@ -14,22 +15,40 @@ const AthleteEdit = ({ athlete, onClose }: AthleteEditInput) => {
   //Inputfeltene i redigeringsvinduet
   const nameInput = useRef<HTMLInputElement | null>(null);
   const priceInput = useRef<HTMLInputElement | null>(null);
+  const genderSelect = useRef<HTMLSelectElement | null>(null);
+  const imageInput = useRef<HTMLInputElement | null>(null);
 
   //Statusmelding for redigeringsboksen
   const [editMessage, seteditMessage] = useState<string>("");
 
+  //State som får tak i bilde når det velges av brukeren
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+
+    if (files != null && files.length > 0) {
+      setImageFile(files[0]);
+    }
+  };
+
   const savingNewInfo = async () => {
     //Først tar vi en sjekk på at feltene har kommet frem ordentlig.
     // Hvis ikke avbryter vi istedenfor at det skjer noe rart.
-    if (nameInput.current == null || priceInput.current == null) {
+    if (
+      nameInput.current == null ||
+      priceInput.current == null ||
+      genderSelect.current == null
+    ) {
       return;
     }
 
     const nameText = nameInput.current.value.trim();
     const priceText = priceInput.current.value.trim();
+    const genderText = genderSelect.current.value.trim();
 
-    if (nameText === "" || priceText === "") {
-      seteditMessage("You need to fill inn both name and price");
+    if (nameText === "" || priceText === "" || genderText === "") {
+      seteditMessage("You need to fill inn all boxes");
       return;
     }
 
@@ -37,18 +56,33 @@ const AthleteEdit = ({ athlete, onClose }: AthleteEditInput) => {
     const priceToNumber = Number(priceText);
 
     if (isNaN(priceToNumber)) {
-      seteditMessage("Please fill in all fields");
+      seteditMessage("Price must be a number");
       return;
+    }
+
+    //Her blir det sjekket om brukeren har valgt et bilde
+    let imageName = athlete.image;
+    if (imageFile != null) {
+      imageName = imageFile.name;
     }
 
     const editedAthlete: IAthlete = {
       id: athlete.id,
       name: nameText,
-      gender: athlete.gender,
+      gender: genderText,
       price: priceToNumber,
       purchaseStatus: athlete.purchaseStatus,
-      image: athlete.image,
+      image: imageName,
     };
+
+    if (imageFile != null) {
+      const imageResponse = await AthleteService.uploadImage(imageFile);
+      if (!imageResponse.success) {
+        seteditMessage("Error: uploading image");
+        return;
+      }
+    }
+
     const response = await updateAthlete(editedAthlete);
 
     if (response.success) {
@@ -87,6 +121,28 @@ const AthleteEdit = ({ athlete, onClose }: AthleteEditInput) => {
           className="border bg-white text-black"
           ref={priceInput}
           type="number"
+        />
+      </div>
+
+      {/* Gender */}
+
+      <div className="p-3">
+        <label className="">Gender:</label>
+        <select className="border bg-white text-black ml-4" ref={genderSelect}>
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+        </select>
+      </div>
+
+      {/* Bilde */}
+
+      <div className="mb-2">
+        <label>Upload new image</label>
+        <input
+          className="border bg-white text-black"
+          ref={imageInput}
+          type="file"
+          onChange={handleImageChange}
         />
       </div>
 

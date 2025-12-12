@@ -54,7 +54,8 @@ namespace Backend.Controllers
                 //Feltene som skal endres
                 athleteFromDb.Name = editedAthlete.Name;
                 athleteFromDb.Price = editedAthlete.Price;
-                // athleteFromDb.Image = editedAthlete.Image;
+                athleteFromDb.Gender = editedAthlete.Gender;
+                athleteFromDb.Image = editedAthlete.Image;
 
                 //Lagrer nye endringer
                 await _context.SaveChangesAsync();
