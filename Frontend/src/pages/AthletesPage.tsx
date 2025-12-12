@@ -45,17 +45,13 @@ const AthletesPage = () => {
       return;
     }
 
-    // const findAthlete = athletes.filter((athlete) =>
-    //   athlete.name.toLowerCase().includes(searchValue)
-    // );
-
     const findAthleteNameOrId = athletes.filter((athleteCheck) => {
-      const searchedId = athleteCheck.id.toString();
-      const searchedName = athleteCheck.name.toLowerCase();
+      const searchedId = athleteCheck.id === Number(searchValue);
+      const searchedName = athleteCheck.name
+        .toLowerCase()
+        .includes(searchValue);
 
-      return (
-        searchedId.includes(searchValue) || searchedName.includes(searchValue)
-      );
+      return searchedId || searchedName;
     });
 
     //Her sier vi oppdater "filteredAthletes" med DENNE filtrerte listen.

@@ -49,29 +49,31 @@ public async Task<ActionResult<Finance>> Get()
 
 
 //oppdater values
-    [HttpPut("purchase/{athleteId}")]
+[HttpPut("purchase/{athleteId}")]
 public async Task<IActionResult> PurchaseAthlete(int athleteId)
 {
     var athlete = await _context.Athletes.FindAsync(athleteId);
-    if (athlete == null) return NotFound("Athlete not found");
+    if (athlete == null) return NotFound();
     if (athlete.PurchaseStatus) return BadRequest("Already purchased");
 
     var finance = await _context.Finances.FirstOrDefaultAsync();
-    if (finance == null) return NotFound("Finance record not found");
+    if (finance == null) return NotFound();
 
-    // Oppdater finans
+     if (finance.MoneyLeft < athlete.Price)
+    {
+        return BadRequest("Not enough money to purchase this athlete");
+    }
+
     finance.MoneyLeft -= athlete.Price;
     finance.MoneySpent += athlete.Price;
-    finance.NumberOfPurchases += 1;
+    finance.NumberOfPurchases++;
 
-    // Oppdater athlete
     athlete.PurchaseStatus = true;
 
     await _context.SaveChangesAsync();
 
     return Ok(finance);
 }
-
 
 
 }

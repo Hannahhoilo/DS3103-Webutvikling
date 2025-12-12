@@ -3,7 +3,10 @@ import { useState, createContext, type ReactNode, useEffect } from "react";
 import type { IAthlete } from "../interfaces/IAthlete";
 import type { IAthletesContext } from "../interfaces/IAthletesContext";
 import AthleteService from "../services/AthleteService";
-import type { IAthleteSingleResponse } from "../interfaces/ResponseInterfaces";
+import type {
+  IAthleteSingleResponse,
+  IDefaultResponse,
+} from "../interfaces/ResponseInterfaces";
 
 //Context-objekt
 //eslint-disable-next-line react-refresh/only-export-components
@@ -55,24 +58,48 @@ export const AthletesProvider = ({ children }: Props) => {
     return response;
   };
 
+  //finance test
+  const registerAthlete = async (id: number): Promise<void> => {
+    const response = await AthleteService.registerAthlete(id);
 
-  //ian test
-    const registerAthlete = async (id: number): Promise<void> => {
-      const response = await AthleteService.registerAthlete(id);
-  
-      if (response.success && response.data) {
-        const updatedAthlete = response.data;
-  
-        setAthletes((prev) =>
-          prev.map((a) => (a.id === id ? updatedAthlete : a))
-        );
-  
-        setStatusMessage("");
-      } else {
-        setStatusMessage("Failed to register athlete");
-      }
-    };
+    if (response.success && response.data) {
+      const updatedAthlete = response.data;
 
+      setAthletes((prev) =>
+        prev.map((a) => (a.id === id ? updatedAthlete : a))
+      );
+
+      setStatusMessage("");
+    } else {
+      setStatusMessage("Failed to register athlete");
+    }
+  };
+
+  //Update Athlete
+  const updateAthlete = async (
+    editedAthlete: IAthlete
+  ): Promise<IDefaultResponse> => {
+    //Det er her vi kaller service som får kobling fra backend.
+    const response = await AthleteService.putAthletes(editedAthlete);
+
+    if (response.success) {
+      // ------------ HVA SKJER ---------
+      // Hvis det gikk bra
+      // setAthletes er funkjsonen som oppdaterer athletes.
+      // prev er den forrige listen med Athletes
+      // Ser gjennom denne listen og hvis det er funnet en med samme id bytt ut infoen med det nye redigerte versjonen.
+      // ----------------------------
+      setAthletes((prev) =>
+        prev.map((a) => (a.id === editedAthlete.id ? editedAthlete : a))
+      );
+      setStatusMessage("Athlete is now updated");
+    } else {
+      // Hvis noe gikk galt
+      setStatusMessage("Feiled to update athlete");
+    }
+
+    return response;
+  };
 
   const value: IAthletesContext = {
     athletes,
@@ -80,10 +107,10 @@ export const AthletesProvider = ({ children }: Props) => {
     saveAthlete,
     statusMessage,
     loadAthletes: loadAthletesService,
-    registerAthlete //ian test
+    registerAthlete, //finance test
+    updateAthlete,
   };
 
-  
   return (
     <AthletesContext.Provider value={value}>
       {children}
