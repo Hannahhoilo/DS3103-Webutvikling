@@ -56,6 +56,7 @@ const ManageVenueItem = () => {
     }
   };
 
+
   return (
     <section>
       <h3>Rediger Venue</h3>

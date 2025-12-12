@@ -93,8 +93,20 @@ const putVenue = async (
   }
 };
 
-export default { getAllVenues, postVenue, getVenueById, putVenue };
+const deleteVenue = async (id: number) => {
+  try {
+    const response = await fetch(`${endpoint}/${id}`, {
+      method: "DELETE",
+    });
 
-/* 
-vi har nå endepunkt for funny hats så nå må vi legge inn endpoint for imageupload 
-*/
+    if (response.ok) {
+      return { success: true };
+    } else {
+      return { success: false, error: "Delete failed!" };
+    }
+  } catch (error) {
+    return { success: false, error };
+  }
+};
+
+export default { getAllVenues, postVenue, getVenueById, putVenue, deleteVenue };

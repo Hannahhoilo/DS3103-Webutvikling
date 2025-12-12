@@ -1,6 +1,11 @@
 import { type IVenue } from "../../interfaces/IVenue";
 
-const VenueItem = ({ venue }: { venue: IVenue }) => {
+interface VenueItemProps {
+  venue: IVenue;
+  onDelete?: () => void; //optional callback fra parent
+}
+
+const VenueItem = ({ venue, onDelete }: /*{ venue: IVenue })*/ VenueItemProps) => {
   return (
     <article className="card mt-8 col-span-3 border">
       <h3 className="text-center font-bold">(Name: {venue.name})</h3>
@@ -11,6 +16,9 @@ const VenueItem = ({ venue }: { venue: IVenue }) => {
         src={`http://localhost:5285/images/${venue.image}`}
         alt={`Bilde av ${venue.name}`}
       />
+      {onDelete && (
+        <button></button>
+      )}
     </article>
   );
 };
