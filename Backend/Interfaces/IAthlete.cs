@@ -11,4 +11,4 @@ namespace Backend.Interfaces
         string Image { get; set; }
 
     }
-} 
+}
