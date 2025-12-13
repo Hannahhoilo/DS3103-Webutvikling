@@ -14,8 +14,6 @@ const ManageVenueList = () => {
     }
   };
 
-/*
-
   const deleteVenueFunction = async (id: number) => {
     const confirmDelete = confirm(
       "Are you sure you want to delete this venue?"
@@ -23,20 +21,19 @@ const ManageVenueList = () => {
     if (!confirmDelete) return;
 
     const deleteResult = await VenuesService.deleteVenue(id);
-    if (result.success) {
+    if (deleteResult.success) {
       // fjernes fra state slik at ui oppdateders
-      setVenues((prev) => prev.filter((v) => v.id != id));
+      setVenues((prev) => prev.filter((v) => v.id !== id));
     } else {
       //Putte inn html status istedenfor
-      alert("Could not delete venue!" + result.error);
+      alert("Could not delete venue!" + deleteResult.error);
     }
   }; // send som prop til managevenueitem
 
-*/
 
   const getVenuesJSX = (): ReactNode => {
     const venuesJSX = venues.map((venue, index) => {
-      return <VenueItem key={"venue" + index} venue={venue} />;
+      return <VenueItem key={"venue" + index} venue={venue} onDelete={() => deleteVenueFunction(venue.id)} />;
     });
     return venuesJSX;
   };

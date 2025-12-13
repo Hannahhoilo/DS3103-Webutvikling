@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import VenuesService from "../../services/VenuesService";
-import type { IVenue } from "../../interfaces/IVenue"; 
+import type { IVenue } from "../../interfaces/IVenue";
 
 const ManageVenueItem = () => {
   const idInput = useRef<HTMLInputElement | null>(null);
@@ -36,47 +36,74 @@ const ManageVenueItem = () => {
     if (
       idInput.current &&
       nameInput.current &&
-	  capacityInput.current &&
+      capacityInput.current &&
       idInput.current.value != "" &&
       nameInput.current.value != "" &&
-	  capacityInput.current.value != "" 
+      capacityInput.current.value != ""
     ) {
       const id = Number(idInput.current.value);
       const name = nameInput.current.value;
-	  const capacity = Number(capacityInput.current.value);
+      const capacity = Number(capacityInput.current.value);
 
       if (!isNaN(id)) {
         const editedVenue: IVenue = {
           id: id,
           name: name,
-		  capacity: capacity,
+          capacity: capacity,
         };
         VenuesService.putVenue(editedVenue);
       }
     }
   };
 
-
   return (
-    <section>
-      <h3>Rediger Venue</h3>
-      <div>
-        <label>ID</label>
-        <input ref={idInput} className="border" type="number" />
-        <button onClick={getVenueById} className="border">
-          Get venue by ID
-        </button>
+    <section className="max-w-md mx-auto bg-[#474747] border border-[#11B7FF] rounded-xl shadow-md p-6;">
+      <h3 className="text-2xl font-bold text-center m-4">Change venue</h3>
+
+      {/* */}
+      <div className="m-4">
+        <div className="flex gap-2">
+          {/*<label>ID</label>*/}
+          <input
+            ref={idInput}
+            className="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+            type="number"
+            placeholder=" ID..."
+          />
+          <button
+            onClick={getVenueById}
+            className="bg-fuchsia-600 text-white px-4 py-2 rounded hover:bg-fuchsia-500 transition-colors"
+          >
+            Get venue by ID
+          </button>
+        </div>
       </div>
 
-      <div>
-        <label>Name</label>
-        <input ref={nameInput} className="border" type="text" />
+      <div className="m-4">
+        <div className="flex gap-2">
+          {/*<label>Name</label>*/}
+          <input
+            ref={nameInput}
+            placeholder=" Name..."
+            className="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+            type="text"
+          />
+        </div>
       </div>
-	  <div>
-		<label>Capacity</label>
-		<input ref={capacityInput} className="border" type="number" />
-	  </div>
-      <button onClick={editVenue} className="border">
+
+      <div className="m-4">
+        <div className="flex gap-2">
+          {/*<label>Capacity</label>*/}
+          <input
+            ref={capacityInput}
+            className="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+            type="number"
+            placeholder=" Capacity..."
+          />
+        </div>
+      </div>
+
+      <button onClick={editVenue} className="border badge">
         Save changes
       </button>
       <p>Status: {}</p>
