@@ -12,13 +12,11 @@ const VenuePage = () => {
 
         <div className="card mt-8">
           <p className="text-white">Example venue card</p>
-          <span className="badge mt-2">Capacity: 500</span>
-        </div> 
+        </div>
       </div>
       <VenueList />
     </section>
   );
 };
-{/* deeznuts */}
 
 export default VenuePage;

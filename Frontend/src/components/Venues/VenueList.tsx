@@ -6,12 +6,27 @@ import VenueItem from "./VenueItem";
 const VenueList = () => {
   const [venues, setVenues] = useState<IVenue[]>([]);
 
+  // https://www.w3schools.com/typescript/typescript_union_types.php
+  const [sortCapacity, setSortCapacity] = useState<"default" | "asc" | "desc">("default");
+
   const getVenues = async () => {
     const response = await VenuesService.getAllVenues();
 
     if (response.success && response.data != null) {
       setVenues(response.data);
     }
+  };
+
+  const sortByCapacity = (order: "default" | "asc" | "desc") => {
+    setSortCapacity(order);
+
+    setVenues((prev) => {
+      // kopi av arayet før sortering, så state ikke muteres direkte 
+      const copy = [...prev];
+      if (order === "asc") copy.sort((a, b) => a.capacity - b.capacity);
+      if(order === "desc") copy.sort((a, b) => b.capacity - a.capacity);
+      return copy;
+    });
   };
 
   const getVenuesJSX = (): ReactNode => {
@@ -33,6 +48,17 @@ const VenueList = () => {
         >
           Show venues
         </button>
+
+        <select
+          value={sortCapacity}
+          onChange={(e) => sortByCapacity(e.target.value as "default" | "asc" | "desc")}
+        >
+          <option value="default">Default</option>
+          <option value="asc">Ascending 🔼</option>
+          <option value="desc">Descending 🔽</option>
+        </select>
+        
+
       </section>
       <section className="grid grid-cols-12 gap-2">{getVenuesJSX()}</section>
     </>

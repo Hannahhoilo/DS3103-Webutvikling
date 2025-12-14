@@ -58,7 +58,7 @@ const ManageVenueItem = () => {
 
   return (
     <section className="max-w-md bg-[#474747] border border-[#11B7FF] rounded-xl shadow-md p-6">
-      <h3 className="text-2xl font-bold text-center m-4">Change venue</h3>
+      <h3 className="text-2xl font-bold text-center m-4">Edit venue</h3>
 
       {/* */}
       <div className="m-4">
