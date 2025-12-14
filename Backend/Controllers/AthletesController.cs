@@ -38,7 +38,7 @@ namespace Backend.Controllers
         }
 
         //PUT - For å redigere Athletes
-        [HttpPut] 
+        [HttpPut]
         public async Task<IActionResult> Put(Athlete editedAthlete)
         {
             try
@@ -75,19 +75,59 @@ namespace Backend.Controllers
 
 
         //tester ian
-    [HttpPut("{id}/register")]
-public async Task<IActionResult> RegisterAthlete(int id)
-{
-    var athlete = await _context.Athletes.FindAsync(id);
+        [HttpPut("{id}/register")]
+        public async Task<IActionResult> RegisterAthlete(int id)
+        {
+            var athlete = await _context.Athletes.FindAsync(id);
 
-    if (athlete == null)
-        return NotFound();
+            if (athlete == null)
+                return NotFound();
 
-    athlete.PurchaseStatus = true;
+            athlete.PurchaseStatus = true;
 
-    await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-    return Ok(athlete);
-}
+            return Ok(athlete);
+        }
+
+
+
+
+        [HttpDelete("{id}")]
+
+        public async Task<ActionResult> Delete(int id)
+        {
+            try
+
+            {
+                Athlete? athlete = await _context.Athletes.FindAsync(id);
+
+                if (athlete != null)
+                {
+                    _context.Athletes.Remove(athlete);
+                    await _context.SaveChangesAsync();
+
+                    return NoContent();
+
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+
+            catch
+            {
+                return StatusCode(500);
+            }
+
+
+        }
     }
-}
+    }
+
+
+
+
+
+

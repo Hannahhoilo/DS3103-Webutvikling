@@ -32,6 +32,21 @@ const AthleteItem = ({ athlete, isLeftColumn }: AthleteItemData) => {
     );
   }
 
+  const { deleteAthlete } = useContext(AthletesContext) as IAthletesContext;
+
+  const deleteClick = async () => {
+    const warningmessage = window.confirm(
+      "Are you sure you want to delete this athlete?"
+    );
+
+    if (warningmessage) {
+      await deleteAthlete(athlete.id);
+    } else {
+      //Gjør ingenting
+      return;
+    }
+  };
+
   return (
     //kortet med tennis spillere
     //"overflow-hidden" for at bilde ikke skal stikke utenfor boksen.
@@ -60,6 +75,7 @@ const AthleteItem = ({ athlete, isLeftColumn }: AthleteItemData) => {
               Edit
             </button>
             <button
+              onClick={deleteClick}
               className="bg transparent border border-white text-white text-xs px-3 py-1 rounded cursor-pointer
               hover:bg-gradient-to-r
               hover:from-[#7F0606]

@@ -73,7 +73,7 @@ const registerAthlete = async (id: number): Promise<IAthleteSingleResponse> => {
   }
 };
 
-//
+// Redigere
 const putAthletes = async (
   editedAthlete: IAthlete
 ): Promise<IDefaultResponse> => {
@@ -86,6 +86,7 @@ const putAthletes = async (
   }
 };
 
+//Bilde opplast
 const uploadImage = async (image: File): Promise<IDefaultResponse> => {
   try {
     const formData = new FormData();
@@ -106,10 +107,22 @@ const uploadImage = async (image: File): Promise<IDefaultResponse> => {
   }
 };
 
+// Delete
+
+const deleteAthlete = async (id: number): Promise<IDefaultResponse> => {
+  try {
+    await axios.delete(`${endpoint}/${id}`);
+    return { success: true };
+  } catch {
+    return { success: false };
+  }
+};
+
 export default {
   postAthlete,
   getAthletes,
   registerAthlete,
   putAthletes,
   uploadImage,
+  deleteAthlete,
 };

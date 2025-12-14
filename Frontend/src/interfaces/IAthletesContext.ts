@@ -12,4 +12,5 @@ export interface IAthletesContext {
   loadAthletes: () => Promise<void>; //Hente alle utøvere på nytt
   registerAthlete: (id: number) => Promise<void>; //oppdater registret eller ikke
   updateAthlete: (editedAthlete: IAthlete) => Promise<IDefaultResponse>; //Redigere Athletes
+  deleteAthlete: (id: number) => Promise<IDefaultResponse>; //delete
 }

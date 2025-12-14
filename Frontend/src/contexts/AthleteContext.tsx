@@ -101,6 +101,20 @@ export const AthletesProvider = ({ children }: Props) => {
     return response;
   };
 
+  // Delete Athlete
+
+  const deleteAthlete = async (id: number): Promise<IDefaultResponse> => {
+    const response = await AthleteService.deleteAthlete(id);
+
+    if (response.success) {
+      setAthletes((prev) => prev.filter((a) => a.id !== id));
+      setStatusMessage("Athlete was deleted");
+    } else {
+      setStatusMessage("Failed to delete athlete");
+    }
+    return response;
+  };
+
   const value: IAthletesContext = {
     athletes,
     getAthleteQuantity,
@@ -109,6 +123,7 @@ export const AthletesProvider = ({ children }: Props) => {
     loadAthletes: loadAthletesService,
     registerAthlete, //finance test
     updateAthlete,
+    deleteAthlete,
   };
 
   return (
