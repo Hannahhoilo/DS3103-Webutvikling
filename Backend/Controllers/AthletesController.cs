@@ -123,6 +123,31 @@ namespace Backend.Controllers
 
 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(Athlete athlete)
+        {
+            try
+
+            {
+                // Athletes skal ha PurchaseStatus satt til FALSE når de er laget.
+                athlete.PurchaseStatus = false;
+
+                _context.Athletes.Add(athlete);
+                await _context.SaveChangesAsync();
+
+                return Created("", athlete);
+
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
+
+
+
     }
     }
 

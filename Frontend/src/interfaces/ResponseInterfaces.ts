@@ -1,6 +1,5 @@
 import { type IFinance } from "./IFinance";
 import { type IAthlete } from "./IAthlete";
-import { type IVenue } from "./IVenue";
 
 export interface IDefaultResponse {
   success: boolean;
