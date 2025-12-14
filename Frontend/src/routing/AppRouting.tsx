@@ -10,6 +10,7 @@ import {
 import Layout from "../components/layout/Layout";
 import { AthletesProvider } from "../contexts/AthleteContext";
 import { FinanceProvider } from "../contexts/FinanceContext";
+import NotFoundPage from "../pages/NotFoundPage";
 //import MainHeader from "../components/shared/MainHeader";
 //import Header from "../components/layout/Header";
 //import Footer from "../components/layout/Footer";
@@ -17,20 +18,23 @@ import { FinanceProvider } from "../contexts/FinanceContext";
 const AppRouting = () => {
   return (
     <BrowserRouter>
-     <FinanceProvider> {/* fjern eller endre her*/}
-      <AthletesProvider>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/Athletes" element={<AthletesPage />} />
-            <Route path="/Register" element={<RegistrerAthletesPage />} />
-            <Route path="/Finances" element={<FinancesPage />} />
-            <Route path="/Venue" element={<VenuePage />} />
-            <Route path="/ManageVenues" element={<ManageVenuesPage />} />
-          </Route>
-        </Routes>
-      </AthletesProvider>
-       </FinanceProvider>
+      <FinanceProvider>
+        {" "}
+        {/* fjern eller endre her*/}
+        <AthletesProvider>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/Athletes" element={<AthletesPage />} />
+              <Route path="/Register" element={<RegistrerAthletesPage />} />
+              <Route path="/Finances" element={<FinancesPage />} />
+              <Route path="/Venue" element={<VenuePage />} />
+              <Route path="/ManageVenues" element={<ManageVenuesPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Routes>
+        </AthletesProvider>
+      </FinanceProvider>
     </BrowserRouter>
   );
 };
