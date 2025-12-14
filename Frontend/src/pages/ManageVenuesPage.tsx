@@ -7,11 +7,23 @@ const ManageVenuesPage = () => {
     <section className="max-w-3xl mx-auto mt-12 text-center">
       <h1 className="text-3xl font-bold mb-4">Manage Venues</h1>
       <p className="text-lg">Here you can manage venues</p>
-      <VenueAdd />
-      <ManageVenueItem />
-      <ManageVenueList />
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
+        <VenueAdd />
+        <ManageVenueItem />
+      </section>
+      <section className="mt-12">
+        <ManageVenueList />
+      </section>
     </section>
   );
 };
 
 export default ManageVenuesPage;
+
+/*
+grid-cols-1 lg:grid-cols-2
+
+Mobil: 1 kolonne (ligger under hverandre)
+
+Desktop (lg): 2 kolonner (ved siden av hverandre)
+*/

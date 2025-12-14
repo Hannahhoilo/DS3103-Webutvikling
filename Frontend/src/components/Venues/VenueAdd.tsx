@@ -42,8 +42,8 @@ const VenueAdd = () => {
   };
 
   return (
-    <section className="mb-3">
-      <h3 className="text-xl">Save new venue</h3>
+    <section className="max-w-md bg-[#474747] border border-[#11B7FF] rounded-xl shadow-md p-6">
+      <h3 className="text-xl font-semibold mb-4 text-white">Save new venue</h3>
       <div className="mb-1">
         <label>Name</label>
         <input ref={nameInput} className="border" type="text" />
