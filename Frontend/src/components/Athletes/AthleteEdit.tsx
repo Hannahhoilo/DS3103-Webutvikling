@@ -103,11 +103,11 @@ const AthleteEdit = ({ athlete, onClose }: AthleteEditInput) => {
   return (
     <section className="mt-3 p-3 border rounded bg-gradient-to-r from-[#063A7F] to-[#11B7FF]  text-white">
       <h3>Edit Athlete</h3>
-      <div>
+      <div className="mb-3 mt-3">
         {/* NAVN */}
         <label>Name</label>
         <input
-          className="border bg-white text-black"
+          className="border bg-white text-black ml-3"
           ref={nameInput}
           type="text"
         />
@@ -118,7 +118,7 @@ const AthleteEdit = ({ athlete, onClose }: AthleteEditInput) => {
       <div>
         <label>Price</label>
         <input
-          className="border bg-white text-black"
+          className="border bg-white text-black ml-5"
           ref={priceInput}
           type="number"
         />
@@ -136,7 +136,7 @@ const AthleteEdit = ({ athlete, onClose }: AthleteEditInput) => {
 
       {/* Bilde */}
 
-      <div className="mb-2">
+      <div className="mb-4">
         <label>Upload new image</label>
         <input
           className="border bg-white text-black"

@@ -5,9 +5,7 @@ import type { IAthletesContext } from "../../interfaces/IAthletesContext";
 import AthleteService from "../../services/AthleteService";
 
 const AthleteAdd = () => {
-  const { saveAthlete, statusMessage } = useContext(
-    AthletesContext
-  ) as IAthletesContext;
+  const { saveAthlete } = useContext(AthletesContext) as IAthletesContext;
 
   const nameInput = useRef<HTMLInputElement | null>(null);
   const priceInput = useRef<HTMLInputElement | null>(null);
@@ -47,13 +45,20 @@ const AthleteAdd = () => {
     }
 
     const priceToNumber = Number(priceText);
+    console.log("priceText =", priceText);
     if (isNaN(priceToNumber)) {
-      setAddMessage("Price must be a number");
+      setAddMessage(`Price must be a number (priceText=${priceText}`);
       return;
     }
 
     if (uploadImage == null) {
-      setAddMessage("You nned to upload an image");
+      setAddMessage("You need to upload an image");
+      return;
+    }
+
+    const imageResponse = await AthleteService.uploadImage(uploadImage);
+    if (imageResponse.success === false) {
+      setAddMessage("Uploading image failed");
       return;
     }
 
@@ -88,12 +93,12 @@ const AthleteAdd = () => {
   }
 
   return (
-    <section className="border p-5">
+    <section className="border p-5 bg-gradient-to-r from-[#063A7F] to-[#11B7FF]">
       {/* NAVN */}
-      <div>
+      <div className="mb-3">
         <label>Name</label>
         <input
-          className="border bg-white text-black"
+          className="border bg-white text-black ml-3"
           ref={nameInput}
           type="text"
         />
@@ -102,7 +107,7 @@ const AthleteAdd = () => {
       <div>
         <label>Price</label>
         <input
-          className="border bg-white text-black"
+          className="border bg-white text-black ml-5"
           ref={priceInput}
           type="number"
         />
@@ -119,13 +124,12 @@ const AthleteAdd = () => {
       <div className="mb-2">
         <label>Upload Image</label>
         <input
-          className="border bg-white text-black"
-          ref={priceInput}
+          className="border bg-white text-black ml-4"
           type="file"
           onChange={handleImageChangeAdd}
         />
       </div>
-      {/* Knapp */}'
+      {/* Knapp */}
       <div className="mt-2 flex gap-2">
         <button onClick={saveNewAthlete} className="border px-2">
           Save
