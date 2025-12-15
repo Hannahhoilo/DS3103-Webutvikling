@@ -15,6 +15,9 @@ const AthleteItem = ({ athlete, isLeftColumn }: AthleteItemData) => {
   //state for å vise redigeringsboksen eller ikke.
   const [showEditWindow, setshowEditWindow] = useState<boolean>(false);
 
+  //state for å vise "delete warning" box.
+  const [showDeleteWarning, setShowDeleteWarning] = useState<boolean>(false);
+
   const editWindowposition = isLeftColumn
     ? "right-full mr-4"
     : "left-full ml-4";
@@ -34,18 +37,60 @@ const AthleteItem = ({ athlete, isLeftColumn }: AthleteItemData) => {
 
   const { deleteAthlete } = useContext(AthletesContext) as IAthletesContext;
 
+  // knappen blir tryppet på og vinduet vises.
   const deleteClick = async () => {
-    const warningmessage = window.confirm(
-      "Are you sure you want to delete this athlete?"
-    );
-
-    if (warningmessage) {
-      await deleteAthlete(athlete.id);
-    } else {
-      //Gjør ingenting
-      return;
-    }
+    setShowDeleteWarning(true);
   };
+
+  //Her godtar du sletting.
+  const confirmDelete = async () => {
+    // athlete blir slettet.
+    await deleteAthlete(athlete.id);
+    // vinduet lukkes
+    setShowDeleteWarning(false);
+  };
+
+  const cancleDelete = () => {
+    //vinduet lukkes uten at brukeren sletter athlete.
+    setShowDeleteWarning(false);
+  };
+
+  let deleteWarning = null;
+
+  if (showDeleteWarning) {
+    deleteWarning = (
+      //Her legger boksen seg oppå atleten og dekker hele boksen.
+      <section className="absolute inset-0 border pt-10 font-bold bg-gradient-to-r from-[#063A7F] to-[#11B7FF]">
+        <div>
+          <p>Are you sure you want to delete {athlete.name}?</p>
+        </div>
+        <div className="pt-8">
+          <button
+            onClick={cancleDelete}
+            className="border p-5 cursor-pointer
+              hover:bg-gradient-to-r
+              hover:from-[#063A7F]
+              hover:to-[#11B7FF]
+              transition
+              active:scale-94
+              "
+          >
+            Cancel
+          </button>
+          <button
+            onClick={confirmDelete}
+            className="border p-5 hover:bg-gradient-to-r
+              hover:from-[#7F0606]
+              hover:to-[#FF4D4D]
+              transition
+              active:scale-94"
+          >
+            Delete
+          </button>
+        </div>
+      </section>
+    );
+  }
 
   return (
     //kortet med tennis spillere
@@ -108,6 +153,8 @@ const AthleteItem = ({ athlete, isLeftColumn }: AthleteItemData) => {
 
         {/* Redigeringsboks */}
         {editWindow}
+        {/* Advarselboks */}
+        {deleteWarning}
       </div>
     </article>
   );
