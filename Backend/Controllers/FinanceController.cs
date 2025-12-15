@@ -29,22 +29,39 @@ public async Task<ActionResult<Finance>> Get()
     return Ok(finance);
 }
 
-[HttpPost("loan")]
-    public async Task<IActionResult> TakeLoan([FromBody] int amount)
-    {
-        if (amount <= 0)
-            return BadRequest("Amount must be greater than zero");
+// [HttpPost("loan")]
+//     public async Task<IActionResult> TakeLoan([FromBody] int amount)
+//     {
+//         if (amount <= 0)
+//             return BadRequest("Amount must be greater than zero");
 
-        var finance = await _context.Finances.FirstOrDefaultAsync();
-        if (finance == null)
-            return NotFound("Finance record not found");
+//         var finance = await _context.Finances.FirstOrDefaultAsync();
+//         if (finance == null)
+//             return NotFound("Finance record not found");
 
-        finance.MoneyLeft += amount;  // Øk tilgjengelige penger
+//         finance.MoneyLeft += amount;  // Øk tilgjengelige penger
 
-        await _context.SaveChangesAsync();
+//         await _context.SaveChangesAsync();
 
-        return Ok(finance);
-    }
+//         return Ok(finance);
+//     }
+
+[HttpPost("loan/{amount}")]
+public async Task<IActionResult> TakeLoan(int amount)
+{
+    if (amount <= 0)
+        return BadRequest("Amount must be greater than zero");
+
+    var finance = await _context.Finances.FirstOrDefaultAsync();
+    if (finance == null)
+        return NotFound("Finance record not found");
+
+    finance.MoneyLeft += amount;
+
+    await _context.SaveChangesAsync();
+
+    return Ok(finance);
+}
 
 
 
