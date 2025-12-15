@@ -5,7 +5,7 @@ const FinanceMoney = () => {
   const financeContext = useContext(FinanceContext); //he
   const money = financeContext?.finance;
 
-  if (!money) return <p>Laster finance...</p>;
+  if (!money) return <p>Laster finance..</p>;
 
   return (
     <article

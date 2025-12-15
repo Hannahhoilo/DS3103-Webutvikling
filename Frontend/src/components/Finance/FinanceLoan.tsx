@@ -23,8 +23,8 @@ export default function LoanComponent() {
   return (
     <div>
       <input
-      className="w-50 px-3 py-2 rounded-lg bg-white/10 border border-white/20 
-                   text-white placeholder-white/60
+      className="w-50 px-3 py-2 rounded-lg bg-white border border-white
+                   text-white placeholder-black
                    focus:outline-none focus:ring-2 focus:ring-blue-400"
         type="number"
         value={loanAmount}
