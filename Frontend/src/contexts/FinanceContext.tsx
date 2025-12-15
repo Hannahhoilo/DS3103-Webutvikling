@@ -36,7 +36,7 @@ export const FinanceProvider = ({ children }: Props) => {
       return false;
     }
 
-    // 👇 Sjekk penger
+    // sjekk moneyleft
     if ((finance.moneyLeft ?? 0) < athletePrice) {
       setStatusMessage("Ikke nok spenn, ta et lån!");
       return false;
@@ -54,7 +54,7 @@ export const FinanceProvider = ({ children }: Props) => {
     return false;
   };
 
-  // 👇 TAKE LOAN — NY FUNKSJON
+  // tar lånet
   const takeLoan = async (amount: number): Promise<boolean> => {
     const response = await FinanceService.takeLoan(amount);
 
@@ -72,7 +72,7 @@ export const FinanceProvider = ({ children }: Props) => {
     finance,
     loadFinance,
     purchaseAthlete,
-    takeLoan,          // 👈 VIKTIG: legg til i value
+    takeLoan, 
     statusMessage,
   };
 

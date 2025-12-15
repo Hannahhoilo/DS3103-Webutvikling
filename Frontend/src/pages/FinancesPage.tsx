@@ -20,12 +20,12 @@ const FinancesPage = () => {
     <>
       {/* Viser hvor mye penger som er igjen */}
 
-      <div className="flex items-start gap-20"> {/*skaper distanse mellom komponenter*/}
-      {finance && <FinanceMoney money={finance} /> } 
+      <div className="flex justify-center gap-30"> {/*skaper distanse mellom komponenter*/}
+      <FinanceMoney/> 
       <LoanComponent/>
       </div>
 
-      <hr style={{ border: "1px solid black", margin: "20px 0" }} /> {/*linje som deler komponetene(midlertidig) */}
+      <hr style={{ border: "3px solid black", margin: "20px 0" }} /> {/*linje som deler komponetene(midlertidig)*/}
 
       {/* Viser alle tilgjengelige athletes */}
       <FinanceAthletes />

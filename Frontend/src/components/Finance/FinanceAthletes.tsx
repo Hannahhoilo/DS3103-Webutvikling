@@ -17,7 +17,7 @@ function FinanceAthletes() {
   return (
     <div>
       
-      <h2 className="text-2xl font-semibold mb-4">Available Athletes</h2>
+      <h2 className="flex justify-center text-2xl font-semibold mb-4">Available Athletes</h2>
 
       {financeContext?.statusMessage && (
   <div className="bg-red-200 text-red-800 font-semibold p-2 mb-4"> 
@@ -25,9 +25,10 @@ function FinanceAthletes() {
   </div> //status message når ikke råd
 )}
 
-      <div className="flex flex-wrap gap-5">
+     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center w-full max-w-[900px] mx-auto">
+        {/*endre her for annen stil */}
         {athletes
-          .filter((a) => !a.purchaseStatus) // viser bare tilgjengelige atleter
+          .filter((atlt) => !atlt.purchaseStatus) // viser bare tilgjengelige atleter
           .map((a) => (
            <div
               key={a.id}
