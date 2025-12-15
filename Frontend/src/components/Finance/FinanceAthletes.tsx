@@ -31,7 +31,7 @@ function FinanceAthletes() {
           .map((a) => (
            <div
               key={a.id}
-              className="border border-[#68b8ce] p-4 w-[200px] h-[320px] rounded-lg shadow-sm flex flex-col"
+              className="border border-[#68b8ce] p-4 w-[200px] h-[340px] rounded-lg shadow-sm flex flex-col"
                 >
 
               
@@ -39,18 +39,18 @@ function FinanceAthletes() {
              <img
              src={`http://localhost:5285/images/${a.image}`}
              alt={a.name}
-             className="w-full rounded-lg mb-2" //h-32 gir høyde, kan endres/fjernes men bildene blir ulike
+             className="w-full rounded-lg mb-2 h-48 object-cover" //h-48 gir høyde, kan endres/fjernes men bildene blir ulike
             />
 
               <h3 className="text-lg font-medium">{a.name}</h3>
-              <p className="text-sm text-white-700">Gender: {a.gender}</p>
-              <p className="text-sm text-white-700">Price: {a.price}</p>
+              <p className="text-sm text-white-700">gender: {a.gender}</p>
+              <p className="text-sm text-white-700">price: {a.price}</p>
 
-              <p className="text-sm font-medium mt-1 font-bold">
-                Registered: {a.purchaseStatus ? "Yes" : "No"}
+              <p className="text-sm font-medium mt-2 font-bold">
+                registered: {a.purchaseStatus ? "Yes" : "No"}
               </p>
                     <button
-                      className="bg-black text-white mx-auto mt-auto rounded-md p-3 hover:bg-gray-500"
+                      className="bg-black text-white mx-auto rounded-md p-3 hover:bg-gray-500 mt-4"
                        onClick={async () => {
                     const success = await financeContext?.purchaseAthlete(a.id, a.price);
 

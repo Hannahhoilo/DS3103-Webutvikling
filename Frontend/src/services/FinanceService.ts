@@ -19,18 +19,28 @@ const getMoney = async (): Promise<IFinanceResponse> => {
 };
 
 
+// sender lånebeløp til backend og får oppdatert Finance tilbake
+// const takeLoan = async (amount: number): Promise<IFinanceResponse> => {
+//   try {
+//     const response = await axios.post(
+//       `${fEndpoint}/loan`,
+//       amount,
+//       { headers: { "Content-Type": "application/json" } }
+//     );
 
+//     return { success: true, data: response.data };
+//   } catch {
+//     return { success: false, data: null };
+//   }
+// };
 
-// Sender lånebeløp til backend og får oppdatert Finance tilbake
 const takeLoan = async (amount: number): Promise<IFinanceResponse> => {
   try {
-    const response = await axios.post(`${fEndpoint}/loan`, amount, {
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await axios.post(`${fEndpoint}/loan/${amount}`);
 
     return {
       success: true,
-      data: response.data, // backend returnerer Finance-objektet
+      data: response.data,
     };
   } catch (error) {
     console.error("Loan request failed", error);
@@ -40,6 +50,7 @@ const takeLoan = async (amount: number): Promise<IFinanceResponse> => {
     };
   }
 };
+
 
 
 //oppdater values
