@@ -25,6 +25,7 @@ const AthleteAdd = () => {
     }
   };
 
+  //Dette er funksjonen som blir kalt når knappen "save" trykkes på.
   const saveNewAthlete = async () => {
     setAddMessage("");
 
@@ -80,7 +81,59 @@ const AthleteAdd = () => {
     }
   };
 
-  return <h1>stuffffffffffffffffffffffffffffff</h1>;
+  let feedbackMessage = null;
+
+  if (addMessage !== "") {
+    feedbackMessage = <p className="text-red-500 mb-4">Status: {addMessage}</p>;
+  }
+
+  return (
+    <section className="border p-5">
+      {/* NAVN */}
+      <div>
+        <label>Name</label>
+        <input
+          className="border bg-white text-black"
+          ref={nameInput}
+          type="text"
+        />
+      </div>
+      {/* PRIS */}
+      <div>
+        <label>Price</label>
+        <input
+          className="border bg-white text-black"
+          ref={priceInput}
+          type="number"
+        />
+      </div>
+      {/* GENDER */}
+      <div className="p-3">
+        <label>Name</label>
+        <select className="border bg-white text-black ml-4" ref={genderSelect}>
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+        </select>
+      </div>
+      {/* Bilde */}
+      <div className="mb-2">
+        <label>Upload Image</label>
+        <input
+          className="border bg-white text-black"
+          ref={priceInput}
+          type="file"
+          onChange={handleImageChangeAdd}
+        />
+      </div>
+      {/* Knapp */}'
+      <div className="mt-2 flex gap-2">
+        <button onClick={saveNewAthlete} className="border px-2">
+          Save
+        </button>
+      </div>
+      {feedbackMessage}
+    </section>
+  );
 };
 
 export default AthleteAdd;
