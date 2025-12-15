@@ -10,7 +10,7 @@ const VenueItem = ({ venue, onDelete }: /*{ venue: IVenue })*/ VenueItemProps) =
     <article className="card mt-8 col-span-3 border text-left mb-20">
       <img
         //className="h-50 m-auto"
-        className="w-full rounded-lg mb-2"
+        className="w-full rounded-lg mb-2 h-48 object-cover"
         src={`http://localhost:5285/images/${venue.image}`}
         alt={`Bilde av ${venue.name}`}
       />

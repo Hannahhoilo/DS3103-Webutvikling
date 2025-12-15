@@ -21,7 +21,7 @@ const VenueList = () => {
     setSortCapacity(order);
 
     setVenues((prev) => {
-      // kopi av arayet før sortering, så state ikke muteres direkte 
+      // kopi av arayet før sortering, så original arrayet ikke blir endret på noen måte
       const copy = [...prev];
       if (order === "asc") copy.sort((a, b) => a.capacity - b.capacity);
       if(order === "desc") copy.sort((a, b) => b.capacity - a.capacity);
