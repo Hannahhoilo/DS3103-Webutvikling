@@ -4,7 +4,7 @@ using Backend.Models;
 using Backend.Context;
 
 
-namespace Backend.Controllers; //hei
+namespace Backend.Controllers; 
 
 [ApiController]
 [Route("api/[controller]")]
@@ -19,7 +19,7 @@ public class FinanceController : ControllerBase
     }
 
    
-
+//get for finans
  [HttpGet]
 public async Task<ActionResult<Finance>> Get()
 {
@@ -29,32 +29,16 @@ public async Task<ActionResult<Finance>> Get()
     return Ok(finance);
 }
 
-// [HttpPost("loan")]
-//     public async Task<IActionResult> TakeLoan([FromBody] int amount)
-//     {
-//         if (amount <= 0)
-//             return BadRequest("Amount must be greater than zero");
-
-//         var finance = await _context.Finances.FirstOrDefaultAsync();
-//         if (finance == null)
-//             return NotFound("Finance record not found");
-
-//         finance.MoneyLeft += amount;  // Øk tilgjengelige penger
-
-//         await _context.SaveChangesAsync();
-
-//         return Ok(finance);
-//     }
-
+// Post-tar lån
 [HttpPost("loan/{amount}")]
 public async Task<IActionResult> TakeLoan(int amount)
 {
     if (amount <= 0)
-        return BadRequest("Amount must be greater than zero");
+        return NoContent(); //204
 
     var finance = await _context.Finances.FirstOrDefaultAsync();
     if (finance == null)
-        return NotFound("Finance record not found");
+        return NotFound("Finance record not found"); //404 ikke funnet
 
     finance.MoneyLeft += amount;
 
@@ -71,14 +55,14 @@ public async Task<IActionResult> PurchaseAthlete(int athleteId)
 {
     var athlete = await _context.Athletes.FindAsync(athleteId);
     if (athlete == null) return NotFound();
-    if (athlete.PurchaseStatus) return BadRequest("Already purchased");
+    if (athlete.PurchaseStatus) return NoContent(); //allerede kjøpt
 
     var finance = await _context.Finances.FirstOrDefaultAsync();
     if (finance == null) return NotFound();
 
      if (finance.MoneyLeft < athlete.Price)
     {
-        return BadRequest("Not enough money to purchase this athlete");
+        return NotFound("Not enough money");
     }
 
     finance.MoneyLeft -= athlete.Price;

@@ -17,9 +17,7 @@ namespace Backend.Controllers
         }
 
 
-
         // GET: api/athletes 
-
 
         [HttpGet]
         public async Task<ActionResult<List<Athlete>>> Get()
@@ -74,7 +72,7 @@ namespace Backend.Controllers
 
 
 
-        //tester ian
+        //Finance register athlete
         [HttpPut("{id}/register")]
         public async Task<IActionResult> RegisterAthlete(int id)
         {
