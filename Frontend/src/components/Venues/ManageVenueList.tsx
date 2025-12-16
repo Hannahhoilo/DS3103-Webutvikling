@@ -40,18 +40,18 @@ const ManageVenueList = () => {
 
   return (
     <>
-      <header className="mb-2">
-        <h3 className="text-xl">Our venues</h3>
-      </header>
-      <section className="mb-2">
+      <section className="m-4 flex justify-center">
         <button
           onClick={getVenues}
-          className="border border-fuchsia-700 px-2 py-1 text-white bg-fuchsia-600 hover:bg-fuchsia-500 cursor-pointer"
+          className="bg-gray-900 text-white px-4 py-2 rounded border border-[#11B7FF] hover:bg-gray-800 hover:text-[#11B7FF] transition-colors cursor-pointer"
         >
           Show venues
         </button>
       </section>
-      <section className="grid grid-cols-12 gap-2">{getVenuesJSX()}</section>
+
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 px-8">
+        {getVenuesJSX()}
+      </section>
     </>
   );
 };

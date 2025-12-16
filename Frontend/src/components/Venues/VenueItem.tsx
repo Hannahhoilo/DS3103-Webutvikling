@@ -7,9 +7,8 @@ interface VenueItemProps {
 
 const VenueItem = ({ venue, onDelete }: /*{ venue: IVenue })*/ VenueItemProps) => {
   return (
-    <article className="card mt-8 col-span-3 border text-left mb-20">
+    <article className="card mt-8 border text-left mb-20">
       <img
-        //className="h-50 m-auto"
         className="w-full rounded-lg mb-2 h-48 object-cover"
         src={`http://localhost:5285/images/${venue.image}`}
         alt={`Bilde av ${venue.name}`}
@@ -21,7 +20,7 @@ const VenueItem = ({ venue, onDelete }: /*{ venue: IVenue })*/ VenueItemProps) =
       {onDelete && (
         <button
           onClick={onDelete}
-          className="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-500 mt-2"
+          className="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-500 mt-2 cursor-pointer"
         >
           {" "}
           Delete

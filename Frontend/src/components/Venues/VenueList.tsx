@@ -56,13 +56,6 @@ const VenueList = () => {
   return (
     <>
       <section className="mb-4 grid grid-flow-col gap-4 items-center">
-        {/*
-        <button
-          onClick={getVenues}
-          className="border border-fuchsia-700 px-2 py-1 text-white bg-fuchsia-600 hover:bg-fuchsia-500 cursor-pointer"
-        >
-          Show venues
-        </button> */}
         <select
           value={sortCapacity}
           onChange={(e) =>
@@ -80,13 +73,11 @@ const VenueList = () => {
         <p className="mb-2">Total venues: {getVenueQuantity()}</p>
       </section>
 
-      <section className="grid grid-cols-12 gap-4">
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 px-8">
         {sortedVenues.map((venue, index) => (
           <VenueItem key={"venue" + index} venue={venue} />
         ))}
       </section>
-
-      {/*<section className="grid grid-cols-12 gap-2">{getVenuesJSX()}</section>*/}
     </>
   );
 };

@@ -11,7 +11,7 @@ const ManageVenueItem = () => {
   const [statusMessageType, setStatusMessageType] = useState<"success" | "error" | "">("");
   const [currentVenue, setCurrentVenue] = useState<IVenue | null>(null);
 
-  // Søk
+  // Søk etter venue id 
   const getVenueById = async () => {
     if (
       idInput.current /*samme som != null*/ &&
@@ -26,11 +26,6 @@ const ManageVenueItem = () => {
         //er det et tall kan vi be venue sercive å få tak i
         const response = await VenuesService.getVenueById(idParsed);
 
-        /*if (response.success == true) {
-          if (nameInput.current != null) {
-            nameInput.current.value = response.data?.name || "Ikke satt";
-          }
-        } */
        if (response.success && response.data) {
         setCurrentVenue(response.data);
 
@@ -53,7 +48,7 @@ const ManageVenueItem = () => {
     }
   };
 
-  // endre 
+  // endre venue
   const editVenue = async () => {
     if (
       idInput.current &&
@@ -85,19 +80,17 @@ const ManageVenueItem = () => {
     <section className="max-w-md bg-[#474747] border border-[#11B7FF] rounded-xl shadow-md p-6">
       <h3 className="text-2xl font-bold text-center m-4">Edit venue</h3>
 
-      {/* */}
       <div className="m-4">
         <div className="flex gap-2">
-          {/*<label>ID</label>*/}
           <input
             ref={idInput}
-            className="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+            className="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#BBFF00]"
             type="number"
             placeholder=" ID..."
           />
           <button
             onClick={getVenueById}
-            className="bg-fuchsia-600 text-white px-4 py-2 rounded hover:bg-fuchsia-500 transition-colors"
+            className="bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-800 hover:text-[#BBFF00] transition-colors cursor-pointer"
           >
             Search
           </button>
@@ -106,11 +99,10 @@ const ManageVenueItem = () => {
 
       <div className="m-4">
         <div className="flex gap-2">
-          {/*<label>Name</label>*/}
           <input
             ref={nameInput}
             placeholder=" Name..."
-            className="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+            className="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#BBFF00]"
             type="text"
           />
         </div>
@@ -118,10 +110,9 @@ const ManageVenueItem = () => {
 
       <div className="m-4">
         <div className="flex gap-2">
-          {/*<label>Capacity</label>*/}
           <input
             ref={capacityInput}
-            className="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+            className="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#BBFF00]"
             type="number"
             placeholder=" Capacity..."
           />
@@ -130,7 +121,7 @@ const ManageVenueItem = () => {
 
       <button
         onClick={editVenue}
-        className="bg-fuchsia-600 text-white px-4 py-2 rounded hover:bg-fuchsia-500 transition-colors"
+        className="bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-800 hover:text-[#BBFF00] transition-colors cursor-pointer"
       >
         Save changes
       </button>

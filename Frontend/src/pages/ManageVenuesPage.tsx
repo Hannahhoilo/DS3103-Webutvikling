@@ -4,14 +4,17 @@ import VenueAdd from "../components/Venues/VenueAdd";
 
 const ManageVenuesPage = () => {
   return (
-    <section className="max-w-3xl mx-auto mt-12 text-center">
-      <h1 className="text-3xl font-bold mb-4">Manage Venues</h1>
-      <p className="text-lg">Here you can manage venues</p>
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
-        <VenueAdd />
-        <ManageVenueItem />
+    <section>
+      <section className="max-w-3xl mx-auto mt-12 text-center">
+        <h1 className="text-3xl font-bold mb-4">Manage Venues</h1>
+        <p className="text-lg">Here you can manage venues</p>
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
+          <VenueAdd />
+          <ManageVenueItem />
+        </section>
       </section>
-      <section className="mt-12">
+
+      <section>
         <ManageVenueList />
       </section>
     </section>

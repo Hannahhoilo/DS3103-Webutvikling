@@ -3,7 +3,6 @@ import type { IVenue } from "./IVenue";
 export interface IVenueContext {
 	venues: IVenue[];
 	setSearchByName: (text: string) => void;
-	//statusMessage: string;
 	getVenueQuantity: () => number;
 }
 
