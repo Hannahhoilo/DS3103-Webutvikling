@@ -24,7 +24,7 @@ const AppRouting = () => {
         <AthletesProvider>
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/Home" element={<HomePage />} />
+              <Route path="/" element={<HomePage />} />
               <Route path="/Athletes" element={<AthletesPage />} />
               <Route path="/Register" element={<RegistrerAthletesPage />} />
               <Route path="/Finances" element={<FinancesPage />} />

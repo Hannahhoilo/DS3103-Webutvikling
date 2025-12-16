@@ -16,29 +16,34 @@ body {
 
 @keyframes bouncing-ball {
 	0%{
-		transform: translateX(-500%);
+		transform: translateX(-400%);
 	}
 	25% {
-		transform: translateY(-100%);
+		transform: translateY(100%);
 	}
 	50%{
-		transform: translateX(800%);
+		transform: translateX(1200%);
 	}
 	75% {
 		transform: translateY(900%);
 	}
 	100%{
-		transform: translateX(-500%);
+		transform: translateX(-400%);
 	}
 }
 
+.home-Box{
+	position: relative;
+	z-index: 1;
+}
+
 .tennis-ball {
-	animation: bouncing-ball 2s linear infinite;
+	animation: bouncing-ball 3s linear infinite;
 	position: absolute;
-	top:20%;
+	top:15%;
 	left: 0;
 	width: 120px;
-	z-index: -1;
+	z-index: 0;
 }
 
 
