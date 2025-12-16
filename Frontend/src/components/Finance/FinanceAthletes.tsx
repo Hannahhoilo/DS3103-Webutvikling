@@ -48,7 +48,7 @@ function FinanceAthletes() {
               <p className="text-sm text-white-700">price: {a.price}</p>
 
               <p className="text-sm font-medium mt-2 font-bold">
-                registered: {a.purchaseStatus ? "Yes" : "No"}
+                Purchased: {a.purchaseStatus ? "Yes" : "No"}
               </p>
                     <button
                       className="bg-black text-white mx-auto rounded-md p-3 hover:bg-gray-500 mt-4"

@@ -24,7 +24,7 @@ export default function LoanComponent() {
     <div>
       <input
       className="w-50 px-3 py-2 rounded-lg bg-white border border-white
-                   text-white placeholder-black
+                   text-black placeholder-black
                    focus:outline-none focus:ring-2 focus:ring-blue-400"
         type="number"
         value={loanAmount}

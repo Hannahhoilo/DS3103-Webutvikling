@@ -20,30 +20,14 @@ const getMoney = async (): Promise<IFinanceResponse> => {
 
 
 // sender lånebeløp til backend og får oppdatert Finance tilbake
-// const takeLoan = async (amount: number): Promise<IFinanceResponse> => {
-//   try {
-//     const response = await axios.post(
-//       `${fEndpoint}/loan`,
-//       amount,
-//       { headers: { "Content-Type": "application/json" } }
-//     );
-
-//     return { success: true, data: response.data };
-//   } catch {
-//     return { success: false, data: null };
-//   }
-// };
-
 const takeLoan = async (amount: number): Promise<IFinanceResponse> => {
   try {
     const response = await axios.post(`${fEndpoint}/loan/${amount}`);
-
     return {
       success: true,
       data: response.data,
     };
-  } catch (error) {
-    console.error("Loan request failed", error);
+  } catch{
     return {
       success: false,
       data: null,

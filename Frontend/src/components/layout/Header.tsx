@@ -26,27 +26,26 @@ const Header = () => {
           <Link to="/Register">Register</Link>
         </li>
 
-        <li>
+        <li className="text-lg hover:text-[#DAFFA2]">
+          {location.pathname === "/Finances" && "🎾"}
           <Link
-            to="/Finances"
-            className="text-lg font-bold text-[#BBFF00] hover:text-[#DAFFA2]"
-          >
+            to="/Finances">
             Finances
           </Link>
         </li>
-        <li>
+
+        <li className="text-lg hover:text-[#DAFFA2]">
+           {location.pathname === "/Venue" && "🎾"}
           <Link
-            to="/Venue"
-            className="text-lg font-bold text-[#BBFF00] hover:text-[#DAFFA2]"
-          >
+            to="/Venue">
             Venues
           </Link>
         </li>
-        <li>
+
+        <li className="text-lg hover:text-[#DAFFA2]">
+           {location.pathname === "/ManageVenues" && "🎾"}
           <Link
-            to="/ManageVenues"
-            className="text-lg font-bold text-[#BBFF00] hover:text-[#DAFFA2]"
-          >
+            to="/ManageVenues">
             Manage Venues
           </Link>
         </li>
