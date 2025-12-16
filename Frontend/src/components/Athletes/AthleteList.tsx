@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { IAthlete } from "../../interfaces/IAthlete";
 import AthleteItem from "./AthleteItem";
 

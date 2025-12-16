@@ -42,6 +42,7 @@ export const AthletesProvider = ({ children }: Props) => {
     return athletes.length;
   };
 
+  //Lagre ny atlet. Henter AthleteService.postAthlete(newAthlete)
   const saveAthlete = async (
     newAthlete: IAthlete
   ): Promise<IAthleteSingleResponse> => {

@@ -18,15 +18,19 @@ const AthleteItem = ({ athlete, isLeftColumn }: AthleteItemData) => {
   //state for å vise "delete warning" box.
   const [showDeleteWarning, setShowDeleteWarning] = useState<boolean>(false);
 
+  //Hvor redigeringsviduet skal ligge.
+  //Her har vi en utfordring: Hvordan skal dette håndteres på mobil skjer? Da er det ikke plass til redigeringsboks ut til venstre eller høyre.
+  // Vi må indikere at dette bare skal skje på store skjermer(ikke mobil) med "md" som er medium.
+
   const editWindowposition = isLeftColumn
-    ? "right-full mr-4"
-    : "left-full ml-4";
+    ? "md:right-full md:mr-4"
+    : "md:left-full md:ml-4";
 
   let editWindow = null;
 
   if (showEditWindow) {
     editWindow = (
-      <div className={"absolute top-0 " + editWindowposition}>
+      <div className={"md:absolute md:top-0 " + editWindowposition}>
         <AthleteEdit
           athlete={athlete}
           onClose={() => setshowEditWindow(false)} // lukker vinduet
