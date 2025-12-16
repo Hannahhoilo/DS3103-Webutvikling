@@ -1,4 +1,9 @@
 // import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   return (
@@ -24,8 +29,12 @@ const Footer = () => {
 
           <h3 className="font-bold tracking-wide">Address</h3>
           <li>Sportsgata 32, 0343 Levanger </li>
+
+          <FontAwesomeIcon icon={faFacebook} className="text-3xl pt-5" />
+          <FontAwesomeIcon icon={faInstagram} className="text-3xl pt-5" />
+          <FontAwesomeIcon icon={faTwitter} className="text-3xl pt-5" />
+          <FontAwesomeIcon icon={faYoutube} className="text-3xl pt-5" />
         </ul>
-        {/* TODO: fontawesome iconer */}
       </section>
     </footer>
   );

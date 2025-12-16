@@ -3,6 +3,8 @@ import { AthletesContext } from "../contexts/AthleteContext";
 import type { IAthletesContext } from "../interfaces/IAthletesContext";
 import AthleteList from "../components/Athletes/AthleteList";
 import type { IAthlete } from "../interfaces/IAthlete";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const AthletesPage = () => {
   const { athletes, statusMessage } = useContext(
@@ -71,8 +73,15 @@ const AthletesPage = () => {
           // OnChange aktiveres når brukeren søker.
           //Dette oppdaterer searchAthlete også kan vi bruke den teksten for å filtrere på athlete.
         />
-        <button onClick={filterAthletes} className="border px-3 py-2 rounded">
-          søk
+        <button
+          onClick={filterAthletes}
+          className="border px-3 py-2 rounded cursor-pointer
+              hover:bg-gradient-to-r
+              hover:from-[#063A7F]
+              hover:to-[#11B7FF]
+              active:scale-94" //når du trykker skalerer den ned til 94% størrelse
+        >
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
       </div>
 
