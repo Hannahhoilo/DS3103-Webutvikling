@@ -1,12 +1,10 @@
-import { useContext, useEffect, useState, type ReactNode } from "react";
+import { useContext, useEffect, useState, } from "react";
 import { type IVenue } from "../../interfaces/IVenue";
-import VenuesService from "../../services/VenuesService";
 import VenueItem from "./VenueItem";
 import type { IVenueContext } from "../../interfaces/IVenueContext";
 import { VenueContext } from "../../contexts/VenueContext";
 
 const VenueList = () => {
-
 
   // Context kobling 
   const { venues, getVenueQuantity } = 
@@ -18,15 +16,6 @@ const VenueList = () => {
   // staten til sorteringsfunskjonen
   // https://www.w3schools.com/typescript/typescript_union_types.php
   const [sortCapacity, setSortCapacity] = useState<"default" | "asc" | "desc">("default");
-
-  // knapp kaller på funskjon i venuesservise som sender http-forespørsel til backend for å hente alle venues
-  /*const getVenues = async () => {
-    const response = await VenuesService.getAllVenues();
-
-    if (response.success && response.data != null) {
-      setVenues(response.data);
-    }
-  }; */
 
   // reseter sorteringslisten når en venue endres
   useEffect(() => {
@@ -45,13 +34,6 @@ const VenueList = () => {
       return copySortedVenue;
     });
   };
-{/*
-  const getVenuesJSX = (): ReactNode => {
-    const venuesJSX = venues.map((venue, index) => {
-      return <VenueItem key={"venue" + index} venue={venue} />;
-    });
-    return venuesJSX;
-  }; */}
 
   return (
     <>
@@ -61,7 +43,7 @@ const VenueList = () => {
           onChange={(e) =>
             sortByCapacity(e.target.value as "default" | "asc" | "desc")
           }
-          className="border rounded px-2 py-1 w-60"
+          className="ml-8 border border-gray-300 rounded px-2 py-1 w-60 focus:outline-none focus:ring-2 focus:ring-[#BBFF00]"
         >
           <option value="default">Default</option>
           <option value="asc">Ascending 🔼</option>
@@ -70,7 +52,7 @@ const VenueList = () => {
       </section>
 
       <section>
-        <p className="mb-2">Total venues: {getVenueQuantity()}</p>
+        <p className="ml-8">Total venues: {getVenueQuantity()}</p>
       </section>
 
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 px-8">

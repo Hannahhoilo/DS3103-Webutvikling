@@ -40,7 +40,6 @@ const ManageVenueItem = () => {
         setStatusMessage(`Venue with ID ${idParsed} was found!`);
         setStatusMessageType("success");
       } else {
-        // idparsed er ikke et tall
         setStatusMessage(`Venue with ID ${idParsed} was not found!`);
         setStatusMessageType("error");
       }
