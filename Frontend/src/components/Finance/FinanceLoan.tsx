@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { FinanceContext } from "../../contexts/FinanceContext";
 
-export default function LoanComponent() {
+const LoanComponent = () => {
   const financeContext = useContext(FinanceContext);
   const [loanAmount, setLoanAmount] = useState("");
 
@@ -39,3 +39,6 @@ export default function LoanComponent() {
     </div>
   );
 }
+
+
+export default LoanComponent;

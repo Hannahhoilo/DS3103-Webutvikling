@@ -20,7 +20,6 @@ const AppRouting = () => {
     <BrowserRouter>
       <FinanceProvider>
         {" "}
-        {/* fjern eller endre her*/}
         <AthletesProvider>
           <Routes>
             <Route element={<Layout />}>

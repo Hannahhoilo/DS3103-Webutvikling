@@ -18,7 +18,7 @@ export const FinanceProvider = ({ children }: Props) => {
     const response = await FinanceService.getMoney();
     if (response.success && response.data) {
       setFinance(response.data);
-      setStatusMessage("");
+      setStatusMessage(""); //trenger ikke egt
     }
   };
 
@@ -46,7 +46,6 @@ export const FinanceProvider = ({ children }: Props) => {
 
     if (response.success && response.data) {
       setFinance(response.data); // oppdater økonomi
-      setStatusMessage("");
       return true;
     }
 

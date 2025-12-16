@@ -35,7 +35,7 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-app.UseDefaultFiles(); //launcher stylet apiside ved oppstart
+app.UseDefaultFiles(); //launcher stylet web-api ved oppstart
 app.UseStaticFiles(); //web-api
 
 //For bilder med wwwroot
