@@ -55,10 +55,6 @@ const VenueList = () => {
 
   return (
     <>
-      <header className="mb-2">
-        <h3 className="text-xl">Our venues</h3>
-      </header>
-
       <section className="mb-4 grid grid-flow-col gap-4 items-center">
         {/*
         <button
@@ -72,7 +68,7 @@ const VenueList = () => {
           onChange={(e) =>
             sortByCapacity(e.target.value as "default" | "asc" | "desc")
           }
-          className="border rounded px-2 py-1"
+          className="border rounded px-2 py-1 w-60"
         >
           <option value="default">Default</option>
           <option value="asc">Ascending 🔼</option>

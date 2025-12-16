@@ -8,17 +8,22 @@ const VenuePage = () => {
   return (
     <VenueProvider>
       <section>
-        <div className="max-w-3xl mx-auto mt-12 text-center p-8">
+        <header className="max-w-3xl mx-auto mt-12 text-center p-8">
+          <h1 className="text-xl font-bold">Our registered venues</h1>
+        </header>
+
+        {/*
           <p className="text-lg text-[#F3F3F3]">
             Here you can look at venues and see capacity
-          </p>
+          </p> 
 
           <div className="card mt-8">
             <p className="text-white">Example venue card</p>
           </div>
-        </div>
-        <VenueSearch />
-        <VenueList />
+          */}
+          <VenueSearch />
+          <VenueList />
+
       </section>
     </VenueProvider>
   );

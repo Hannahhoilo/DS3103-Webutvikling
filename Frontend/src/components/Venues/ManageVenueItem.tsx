@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import VenuesService from "../../services/VenuesService";
 import type { IVenue } from "../../interfaces/IVenue";
 
@@ -6,6 +6,11 @@ const ManageVenueItem = () => {
   const idInput = useRef<HTMLInputElement | null>(null);
   const nameInput = useRef<HTMLInputElement | null>(null);
   const capacityInput = useRef<HTMLInputElement | null>(null);
+
+  const [statusMessage, setStatusMessage] = useState<string>("");
+  const [statusMessageType, setStatusMessageType] = useState<"success" | "error" | "">("");
+  const [currentVenue, setCurrentVenue] = useState<IVenue | null>(null);
+
 
   const getVenueById = async () => {
     if (
@@ -21,14 +26,30 @@ const ManageVenueItem = () => {
         //er det et tall kan vi be venue sercive å få tak i
         const response = await VenuesService.getVenueById(idParsed);
 
-        if (response.success == true) {
+        /*if (response.success == true) {
           if (nameInput.current != null) {
             nameInput.current.value = response.data?.name || "Ikke satt";
           }
+        } */
+       if (response.success && response.data) {
+        setCurrentVenue(response.data);
+
+
+        if (nameInput.current) {
+          nameInput.current.value = response.data.name ?? "Ikke satt";
         }
+        if (capacityInput.current) {
+          capacityInput.current.value = response.data.capacity.toString();
+        }
+       
+        setStatusMessage(`Venue with ID ${idParsed} was found!`);
+        setStatusMessageType("success");
       } else {
         // idparsed er ikke et tall
+        setStatusMessage(`Venue with ID ${idParsed} was not found!`);
+        setStatusMessageType("error");
       }
+    }
     }
   };
 
@@ -50,6 +71,7 @@ const ManageVenueItem = () => {
           id: id,
           name: name,
           capacity: capacity,
+          image: currentVenue?.image,
         };
         VenuesService.putVenue(editedVenue);
       }
@@ -74,7 +96,7 @@ const ManageVenueItem = () => {
             onClick={getVenueById}
             className="bg-fuchsia-600 text-white px-4 py-2 rounded hover:bg-fuchsia-500 transition-colors"
           >
-            Get venue by ID
+            Search
           </button>
         </div>
       </div>
@@ -103,10 +125,27 @@ const ManageVenueItem = () => {
         </div>
       </div>
 
-      <button onClick={editVenue} className="border badge">
+      <button
+        onClick={editVenue}
+        className="bg-fuchsia-600 text-white px-4 py-2 rounded hover:bg-fuchsia-500 transition-colors"
+      >
         Save changes
       </button>
-      <p>Status: {}</p>
+
+      <p
+        // styling skjer dynamisk ved hjelp av ternary operator basert på statusmessagetype sin state
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
+        className={`mt-4 text-sm font-bold 
+          ${
+            statusMessageType === "success"
+              ? "text-green-400"
+              : statusMessageType === "error"
+              ? "text-red-400"
+              : "text-white"
+          }`}
+      >
+        Status: {statusMessage}
+      </p>
     </section>
   );
 };
