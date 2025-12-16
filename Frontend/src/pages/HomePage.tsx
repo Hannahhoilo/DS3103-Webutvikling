@@ -27,8 +27,9 @@ const HomePage = () => {
         Please navigate to one of our pages to perform your task
       </p>
       <h2 className="text-lg font-bold text-[#68b8ce]">
-        Build your dream sport event
+        Manage your dream sport event <br/>
       </h2>
+      <p className="text-l py-3"> Browse, create or edit your athletes and venues</p>
     </div>
   </section>
 </div>
