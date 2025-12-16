@@ -36,15 +36,15 @@ const postVenue = async (venue: IVenue, image: File) => {
   // 1 vi skal nå få axos til å poste bilde i database vi skal få til service til p poste til db via context
   // 2 få service til å få kontakt med bildemappen
 
-  // ALT HER BØR VØRE TRY CATCH
+  try {
+    // legger til venue
+    const response = await axios.post(endpoint, venue);
 
-  const response = await axios.post(endpoint, venue);
+    //bildeopplastning - opprette et objekt som pakker inn bildet/filen slik at det kan tas imot av APIet, formdata er en måte å gjre dette på slik at det kan tas i bruk
+   const formData = new FormData();
+   formData.append("file", image);
 
-  //opprette et objekt som pakker inn bildet/filen slik at det kan tas imot av APIet, formdata er en måte å gjre dette på slik at det kan tas i bruk
-  const formData = new FormData();
-  formData.append("file", image);
-
-  const response2 = await axios({
+   await axios ({
     //definerer visse ting ved det vi sender
     //konfigurere at det er post, 3- putte bildet inn i kallet, 4-angi noe son heter headers som er noe er vi kaller, et bilde i httpsammenheng noe som kalles multipark fromdata
     //hvor skal det hen? :
@@ -53,8 +53,19 @@ const postVenue = async (venue: IVenue, image: File) => {
     data: formData,
     headers: { "Content-Type": "multipart/form-data" },
   });
+
+  // const response2 = await axios var her 
   // rensker slik at det plass til neste bilde
   formData.delete("file");
+
+  // returnerer objekt som viser at det var suksess
+  return { success: true, data: response.data };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "Creating venue failed!" };
+  }
+
+
 };
 
 const getVenueById = async (id: number): Promise<IVenuesSingleResponse> => {

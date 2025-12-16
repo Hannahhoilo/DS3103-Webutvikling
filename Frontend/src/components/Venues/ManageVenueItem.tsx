@@ -11,7 +11,7 @@ const ManageVenueItem = () => {
   const [statusMessageType, setStatusMessageType] = useState<"success" | "error" | "">("");
   const [currentVenue, setCurrentVenue] = useState<IVenue | null>(null);
 
-
+  // Søk
   const getVenueById = async () => {
     if (
       idInput.current /*samme som != null*/ &&
@@ -53,6 +53,7 @@ const ManageVenueItem = () => {
     }
   };
 
+  // endre 
   const editVenue = async () => {
     if (
       idInput.current &&
@@ -74,6 +75,8 @@ const ManageVenueItem = () => {
           image: currentVenue?.image,
         };
         VenuesService.putVenue(editedVenue);
+
+        // Fiks statusmelding her !
       }
     }
   };
