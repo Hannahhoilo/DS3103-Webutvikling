@@ -21,9 +21,10 @@ export default function LoanComponent() {
   };
 
   return (
-    <div>
+    <div
+    className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md justify-start">
       <input
-      className="w-50 px-3 py-2 rounded-lg bg-white border border-white
+      className="w-48 h-15 px-3 py-2 my-10 rounded-lg bg-white border border-white
                    text-black placeholder-black
                    focus:outline-none focus:ring-2 focus:ring-blue-400"
         type="number"
@@ -33,7 +34,7 @@ export default function LoanComponent() {
       />
 
       <button 
-      className="bg-black text-white mx-auto my-6 rounded-md p-3 hover:bg-gray-500"
+      className="bg-black text-white mx-auto self-center rounded-md p-3 hover:bg-gray-500"
       onClick={handleLoan}>Loan cash</button>
     </div>
   );

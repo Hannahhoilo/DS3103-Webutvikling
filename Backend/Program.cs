@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
-//hei
 
-//iantest (dotnet ef migrations add InitialCreate og dotnet ef database update)
+
+//(dotnet ef migrations add InitialCreate og dotnet ef database update)
 builder.Services.AddDbContext<SWContext>(
     options => options.UseSqlite("Data Source=Database/SW.db")
 );
@@ -34,6 +34,9 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+app.UseDefaultFiles(); //launcher stylet apiside ved oppstart
+app.UseStaticFiles(); //web-api
 
 //For bilder med wwwroot
 app.UseStaticFiles();

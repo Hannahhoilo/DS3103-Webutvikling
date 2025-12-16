@@ -26,31 +26,31 @@ export const FinanceProvider = ({ children }: Props) => {
     loadFinance();
   }, []);
 
-  // Purchase Athlete 
+  // kjøp athlete 
   const purchaseAthlete = async (
     athleteId: number,
     athletePrice: number
   ): Promise<boolean> => {
     if (!finance) {
-      setStatusMessage("Finance data ikke lastet");
+      setStatusMessage("Finance data not loaded");
       return false;
     }
 
-    // sjekk moneyleft
+    // sjekk moneyleft for lån av atlet
     if ((finance.moneyLeft ?? 0) < athletePrice) {
-      setStatusMessage("Ikke nok spenn, ta et lån!");
+      setStatusMessage("Not sufficient funds, take a loan!");
       return false;
     }
 
     const response = await FinanceService.purchaseAthlete(athleteId);
 
     if (response.success && response.data) {
-      setFinance(response.data); // Oppdater økonomi
+      setFinance(response.data); // oppdater økonomi
       setStatusMessage("");
       return true;
     }
 
-    setStatusMessage("Kunne ikke oppdatere finance");
+    setStatusMessage("could not update finance");
     return false;
   };
 
@@ -64,7 +64,7 @@ export const FinanceProvider = ({ children }: Props) => {
       return true;
     }
 
-    setStatusMessage("Lånet kunne ikke gjennomføres");
+    setStatusMessage("could not take loan"); 
     return false;
   };
 

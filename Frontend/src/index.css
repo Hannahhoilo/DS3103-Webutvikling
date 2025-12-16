@@ -22,10 +22,10 @@ body {
 		transform: translateY(100%);
 	}
 	50%{
-		transform: translateX(1200%);
+		transform: translateX(2000%);
 	}
 	75% {
-		transform: translateY(900%);
+		transform: translateY(600%);
 	}
 	100%{
 		transform: translateX(-400%);
@@ -38,12 +38,14 @@ body {
 }
 
 .tennis-ball {
-	animation: bouncing-ball 3s linear infinite;
+	animation: bouncing-ball 4s linear infinite;
 	position: absolute;
 	top:15%;
 	left: 0;
-	width: 120px;
+	width: 5%;
 	z-index: 0;
 }
+
+
 
 

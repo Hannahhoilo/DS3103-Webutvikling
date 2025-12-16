@@ -6,7 +6,7 @@ const HomePage = () => {
 >
   
  
-  <p className="tennis-ball text-6xl">🎾</p>
+  <img src="/tennisball.png" alt="tball" className="tennis-ball" />
 
   <section
     className="

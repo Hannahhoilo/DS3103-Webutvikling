@@ -1,11 +1,12 @@
 import axios from "axios";
 import type { IFinanceResponse } from "../interfaces/ResponseInterfaces";
 
-const fEndpoint = "http://localhost:5285/api/finance";
+const epoint = "http://localhost:5285/api/finance";
 
+//henter penger fra db
 const getMoney = async (): Promise<IFinanceResponse> => {
   try {
-    const response = await axios.get(fEndpoint);
+    const response = await axios.get(epoint);
     return {
       success: true,
       data: response.data,
@@ -22,7 +23,7 @@ const getMoney = async (): Promise<IFinanceResponse> => {
 // sender lånebeløp til backend og får oppdatert Finance tilbake
 const takeLoan = async (amount: number): Promise<IFinanceResponse> => {
   try {
-    const response = await axios.post(`${fEndpoint}/loan/${amount}`);
+    const response = await axios.post(`${epoint}/loan/${amount}`);
     return {
       success: true,
       data: response.data,
@@ -40,7 +41,7 @@ const takeLoan = async (amount: number): Promise<IFinanceResponse> => {
 //oppdater values
 const purchaseAthlete = async (athleteId: number) => {
   try {
-    const response = await axios.put(`${fEndpoint}/purchase/${athleteId}`);
+    const response = await axios.put(`${epoint}/purchase/${athleteId}`);
 
     return {
       success: true,
