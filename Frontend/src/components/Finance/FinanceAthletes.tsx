@@ -54,7 +54,6 @@ function FinanceAthletes() {
                       className="bg-black text-white mx-auto rounded-md p-3 hover:bg-gray-500 mt-4"
                        onClick={async () => {
                     const success = await financeContext?.purchaseAthlete(a.id, a.price);
-
                     if (success) {
                     athletesContext?.registerAthlete(a.id);
                  }

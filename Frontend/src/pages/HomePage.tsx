@@ -1,8 +1,5 @@
 const HomePage = () => {
   return (
-    
-  
-
     <section
     className="
         bg-black
@@ -16,20 +13,18 @@ const HomePage = () => {
         mt-50
         text-center
       ">
-         <div className="relative w-full h-[300px]">
+         <div className="relative w-full h-[200px]">
       
       
-      <div className="tennis-ball text-4xl">
+      <p className="tennis-ball text-4xl">
         🎾
-      </div>
+      </p>
       <h3 className="text-2xl font-bold">Welcome to sportsworld!</h3>
       <br />
-      <p className="text-lg py-5">Please navigate to one of our pages to continue your task</p>
-      <h2 className="text-lg font-bold text-[#68b8ce]">Build your dream event</h2>
+      <p className="text-lg py-5">Please navigate to one of our pages to performe your task</p>
+      <h2 className="text-lg font-bold text-[#68b8ce]">Build your dream sport event</h2>
      </div>
     </section>
-   
-    
   );
 };
 
