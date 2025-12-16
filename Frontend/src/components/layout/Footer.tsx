@@ -25,6 +25,7 @@ const Footer = () => {
           <h3 className="font-bold tracking-wide">Address</h3>
           <li>Sportsgata 32, 0343 Levanger </li>
         </ul>
+
         {/* TODO: fontawesome iconer */}
       </section>
     </footer>

@@ -7,10 +7,10 @@ const VenueAdd = () => {
   const nameInput = useRef<HTMLInputElement | null>(null);
   const capacityInput = useRef<HTMLInputElement | null>(null);
 
-    const [statusMessage, setStatusMessage] = useState<string>("");
-    const [statusMessageType, setStatusMessageType] = useState<
-      "success" | "error" | ""
-    >("");
+  const [statusMessage, setStatusMessage] = useState<string>("");
+  const [statusMessageType, setStatusMessageType] = useState<
+    "success" | "error" | ""
+  >("");
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -29,7 +29,6 @@ const VenueAdd = () => {
       capacityInput.current.value.trim() != "" &&
       image != null
     ) {
-
       // Error
       const capacity = parseInt(capacityInput.current.value);
       if (isNaN(capacity)) {
@@ -66,7 +65,6 @@ const VenueAdd = () => {
         setStatusMessage("Error!!");
         setStatusMessage("error");
       }
-
     }
   };
 
@@ -101,7 +99,7 @@ const VenueAdd = () => {
         <input
           onChange={changeHandler}
           type="file"
-          className="bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-800 hover:text-[#BBFF00] transition-colors cursor-pointer"
+          className="w-58 bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-800 hover:text-[#BBFF00] transition-colors cursor-pointer"
         />
       </div>
 
