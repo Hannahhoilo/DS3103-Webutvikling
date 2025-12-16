@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
 // https://reactrouter.com/api/hooks/useLocation
-//mulig vi dropper dette siden det er utenfor pensum 
 
 const Header = () => {
 
