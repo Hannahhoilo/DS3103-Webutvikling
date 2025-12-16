@@ -43,7 +43,6 @@ export const VenueProvider = ({children} : Props) => {
 		venues: filteredVenues,
 		setSearchByName,
 		getVenueQuantity,
-		//statusMessage
 		 }}>
         {children}
       </VenueContext.Provider>

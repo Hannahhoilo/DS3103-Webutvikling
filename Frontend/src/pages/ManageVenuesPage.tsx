@@ -23,11 +23,3 @@ const ManageVenuesPage = () => {
 };
 
 export default ManageVenuesPage;
-
-/*
-grid-cols-1 lg:grid-cols-2
-
-Mobil: 1 kolonne (ligger under hverandre)
-
-Desktop (lg): 2 kolonner (ved siden av hverandre)
-*/

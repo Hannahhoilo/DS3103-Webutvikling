@@ -9,14 +9,3 @@ interface IVenue
 	int Capacity{ get; set; }
 	string Image { get; set; }
 }
-
-/*
-Table 3. Venue:
--
-Id
-- Name
-- Capacity***
-- Image
-
-***Capacity is the number of people that fit into the venue
-*/

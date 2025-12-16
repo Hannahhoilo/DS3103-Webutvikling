@@ -6,12 +6,11 @@ const endpointImgUpload = "http://localhost:5285/api/venue/imgupload";
 
 interface IVenuesListResponse {
   success: boolean;
-  data: IVenue[] | null; // en liste
-   //ORIGINALT VAR DENNE HER 
+  data: IVenue[] | null; 
 }
 interface IVenuesSingleResponse {
   success: boolean;
-  data: IVenue | null; // objekt
+  data: IVenue | null; 
 }
 
 const getAllVenues = async (): Promise<IVenuesListResponse> => {
@@ -29,13 +28,8 @@ const getAllVenues = async (): Promise<IVenuesListResponse> => {
   }
 };
 
-// tar imot bilde og bildetekst fra bruker skal gjøre to post,
-//  en mot venuecontroller og en til bildet til ..
-//BNalle funskjoner til service som inneholder axioskall må bruke async
-const postVenue = async (venue: IVenue, image: File) => {
-  // 1 vi skal nå få axos til å poste bilde i database vi skal få til service til p poste til db via context
-  // 2 få service til å få kontakt med bildemappen
 
+const postVenue = async (venue: IVenue, image: File) => {
   try {
     // legger til venue
     const response = await axios.post(endpoint, venue);
@@ -45,20 +39,16 @@ const postVenue = async (venue: IVenue, image: File) => {
    formData.append("file", image);
 
    await axios ({
-    //definerer visse ting ved det vi sender
-    //konfigurere at det er post, 3- putte bildet inn i kallet, 4-angi noe son heter headers som er noe er vi kaller, et bilde i httpsammenheng noe som kalles multipark fromdata
-    //hvor skal det hen? :
+    // POST-kall for bildeopplastning, bildet sendes som multipart/formdata ved hjelp av formdata og headers
     url: endpointImgUpload,
     method: "POST",
     data: formData,
     headers: { "Content-Type": "multipart/form-data" },
   });
 
-  // const response2 = await axios var her 
-  // rensker slik at det plass til neste bilde
   formData.delete("file");
 
-  // returnerer objekt som viser at det var suksess
+  // returnerer objekt som viser at det var suksess eller ikke 
   return { success: true, data: response.data };
   } catch (error) {
     console.error(error);
@@ -69,7 +59,6 @@ const postVenue = async (venue: IVenue, image: File) => {
 };
 
 const getVenueById = async (id: number): Promise<IVenuesSingleResponse> => {
-  // promisen her er ssammenlignbar med Task i backend, handler om å redegjøre en prosess som er asynxton til å jobbe også skjerdet noe
   try {
     const response = await axios.get(`${endpoint}/${id}`);
     return {
@@ -84,7 +73,6 @@ const getVenueById = async (id: number): Promise<IVenuesSingleResponse> => {
   }
 };
 
-// TODO: Flytte interfacene her til en ny fil? Ref. kommentaren ovenfor.
 interface IDefaultResponse{
     success: boolean
 }
