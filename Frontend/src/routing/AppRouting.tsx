@@ -22,6 +22,7 @@ const AppRouting = () => {
         {" "}
         <AthletesProvider>
           <Routes>
+            {/* Layout nester alle pages her, og outlet renderer alt som er nested routes  */}
             <Route element={<Layout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/Athletes" element={<AthletesPage />} />

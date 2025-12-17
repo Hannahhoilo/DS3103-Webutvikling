@@ -55,13 +55,3 @@ const Header = () => {
 
 export default Header;
 
-{
-  /*
-  
-  text-lg font-bold text-[#BBFF00] hover:text-[#DAFFA2]
-
-
-      <header className="w-full bg-gradient-to-r from-[#063A7F] to-[#11B7FF] py-8 text-center">
-        <h1 className="text-4xl font-extrabold text-[#BBFF00]">Venues 🎾</h1>
-      </header>; */
-}
