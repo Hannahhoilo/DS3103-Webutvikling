@@ -38,6 +38,7 @@ const VenueAdd = () => {
       }
 
       const newVenue: IVenue = {
+        id: 0,
         name: nameInput.current.value,
         capacity: parseInt(capacityInput.current.value),
         image: image.name, // image objektet sitt filnavn
